@@ -112,6 +112,8 @@ By entering your expected spread, you can estimate what you can expect to receiv
 
 ## Screenshots
 
+![Desktop 1](frontend/src/globals/images/desktop-0.png "Desktop 1")
+
 [sample price results in pdf](/frontend/src/globals/images/sample-metals-price-sheet.pdf)
 
 ![Mobile 1](/frontend/src/globals/images/mobile-0.png "Mobile 1")
