@@ -1,0 +1,12 @@
+root = true
+
+[*]
+charset = utf-8
+tab_width = 4
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Code files
+[*.{cs,csx,js,jsx,vb,vbx}]
+indent_size = 4

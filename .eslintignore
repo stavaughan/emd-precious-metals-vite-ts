@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+
+# Webpack
+.webpack
+
+# Output
+dist
+
+# Logs
+logs
+
+# Frontend
+frontend
+*.txt

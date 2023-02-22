@@ -1,0 +1,52 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"*": [
+				"node_modules/*"
+			],
+			"@*": [
+				"src/*"
+			],
+		},
+		"types": [
+			"vite/client",
+			"jest",
+			"testing-library__jest-dom"
+		],
+		"resolveJsonModule": true,
+		"checkJs": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		],
+		"skipLibCheck": false,
+
+		"isolatedModules": true,
+		"jsx": "react"
+	},
+	"include": [
+		"vite.config.ts",
+		"build.config.ts",
+		"vitest.setup.ts",
+		"src"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	],
+}

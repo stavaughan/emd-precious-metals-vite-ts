@@ -1,0 +1,29 @@
+/* After Forms and Navigation */
+.dropdown-item.active,
+.dropdown-item.active > svg,
+.dropdown-item:active,
+.dropdown-item:active > svg {
+    color: white;
+}
+
+.dropdown-menu {
+	z-index: 1110
+}
+
+@media (min-width: 768px) {
+	.dropdown-item,
+	.dropdown-item:hover {
+		color: var(--slate-700);
+	}
+	.dropdown-item div svg {
+		color: var(--slate-400);
+	}
+	.dropdown-item:focus,
+	.dropdown-item.active,
+	.dropdown-item:active,
+	.dropdown-item:active div svg,
+	.dropdown-item.active div svg {
+		color: var(--blue-50);
+		background-color: var(--blue-500)
+	}
+}

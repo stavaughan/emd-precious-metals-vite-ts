@@ -1,0 +1,93 @@
+{
+    // Configuration for JavaScript files
+    "extends": [
+        "airbnb-base",
+        "plugin:prettier/recommended"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true,
+                "endOfLine": "auto"
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "backend/**/*.ts"
+            ],
+            "plugins": [
+                "@typescript-eslint",
+                "unused-imports",
+                "simple-import-sort"
+            ],
+            "extends": [
+                "airbnb-typescript/base",
+                "plugin:prettier/recommended"
+            ],
+            "parserOptions": {
+                "project": "./tsconfig.json",
+                "ecmaVersion": "latest",
+                "sourceType": "module"
+            },
+            "rules": {
+                "prettier/prettier": [
+                    "error",
+                    {
+                        "singleQuote": true,
+                        "endOfLine": "auto"
+                    }
+                ],
+                // Allow to use `import` without file extension
+                "import/extensions": [
+                    "error",
+                    "ignorePackages",
+                    {
+                        "js": "never",
+                        "jsx": "never",
+                        "ts": "never",
+                        "tsx": "never",
+                        "": "never"
+                    }
+                ],
+                // Avoid conflict rule between Eslint and Prettier
+                "@typescript-eslint/comma-dangle": "off",
+                // Ensure `import type` is used when it's necessary
+                "@typescript-eslint/consistent-type-imports": "error",
+                // Named export is easier to refactor automatically
+                "import/prefer-default-export": "off",
+                // Import configuration for `eslint-plugin-simple-import-sort`
+                "simple-import-sort/imports": "error",
+                // Export configuration for `eslint-plugin-simple-import-sort`
+                "simple-import-sort/exports": "error",
+                "@typescript-eslint/no-unused-vars": "off",
+                "unused-imports/no-unused-imports": "error",
+                "unused-imports/no-unused-vars": [
+                    "error",
+                    {
+                        "argsIgnorePattern": "^_"
+                    }
+                ]
+            }
+        },
+        // Configuration for testing
+        {
+            "files": [
+                "backend/**/*.test.ts"
+            ],
+            "plugins": [
+                "jest",
+                "jest-formatting"
+            ],
+            "extends": [
+                "plugin:jest/recommended",
+                "plugin:jest-formatting/recommended"
+            ],
+            "rules": {
+                "jest/no-mocks-import": "off"
+            }
+        }
+    ]
+}

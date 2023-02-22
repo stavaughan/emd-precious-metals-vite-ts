@@ -1,0 +1,39 @@
+{
+    "MD033": {
+        "allowed_elements": [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "div",
+            "span",
+            "em",
+            "strong",
+            "b",
+            "i",
+            "u",
+            "br",
+            "a",
+            "img",
+            "code",
+            "pre",
+            "tt",
+            "sub",
+            "sup",
+            "kbd",
+            "samp",
+            "var",
+            "cite",
+            "abbr",
+            "dfn",
+            "mark",
+            "p"
+        ]
+    },
+    "MD013": {
+        "line_length": 250
+    },
+    "MD041": false
+}
