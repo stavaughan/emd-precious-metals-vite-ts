@@ -1,0 +1,6 @@
+NODE_ENV = development
+PORT = [Server Port]
+DOMAIN_DEV = [Local Domain URI]
+DOMAIN_PROD = [Production Domain URI]
+METALS_API=[METALS_API SECURE KEY]
+MONGODB_URL = mongodb+srv://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]

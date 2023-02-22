@@ -1,0 +1,2 @@
+VITE_DOMAIN_DEV = [Local Domain URI]
+VITE_DOMAIN_PROD = [Production Domain URI]
