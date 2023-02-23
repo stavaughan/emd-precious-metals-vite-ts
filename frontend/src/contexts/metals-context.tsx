@@ -21,9 +21,6 @@ import type {
 	IUseSetStorage,
 	StorageReturn
 } from '@/hooks/hooks.types';
-import {
-	Results
-} from '@/components/Tables/ResultsTable/Results.types';
 
 const MetalsContext = createContext({
 	metals: [],
@@ -31,7 +28,6 @@ const MetalsContext = createContext({
 	pageContent: null,
 	metalPrices: null,
 	actionButtons: [],
-	resultsContent: [],
 	dropDownOptions: null,
 	currentMetalPrices: () => { null },
 	storedValues: [],
@@ -200,14 +196,6 @@ export const MetalsProvider: React.FC<{
 		clearResult()
 	}, [inputValues, metalValue, clearResult, setStoredValues, storedPrices]);
 
-	const resultsContent = useMemo(() => {
-		return storedValues.map(result => ({
-			_id: result._id,
-			image: result.image,
-			content: result.content
-		})) as Results;
-	}, [storedValues]);
-
 	const pageContent = useMemo(() => {
 		const displayWeight = Global.propTotal(storedValues, 'weight').toFixed(2) as string;
 		const resuleValue = Global.propTotal(storedValues, 'result') as number;
@@ -339,7 +327,6 @@ export const MetalsProvider: React.FC<{
 				dropDownOptions,
 				setStoredValues,
 				currentMetalPrices,
-				resultsContent,
 				hasPrices,
 				hasInputs,
 				storedValues,
