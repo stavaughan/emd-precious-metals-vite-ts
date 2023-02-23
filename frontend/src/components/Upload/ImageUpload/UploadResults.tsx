@@ -5,7 +5,7 @@ import type { FileObject } from '../components/upload.types';
 import { ResultsImages } from '.';
 
 const UploadResults: React.FC<{
-	files: FileObject[];
+	files: FileObject[] | [];
 	setFiles: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
 }> = ({ files, setFiles }) => {
 

@@ -20,6 +20,7 @@ export type FileObject = {
 	url?: string;
 	name?: string;
 	date?: string;
+	isImage?: boolean;
 }
 
 export type Files = FileObject[] | [];

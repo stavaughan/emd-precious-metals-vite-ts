@@ -6,16 +6,19 @@ import Classes from '../styles/ResultsTable.module.css';
 import ImgClasses from '../../../Gallery/styles/images.module.css';
 
 type Props = {
-	item: FileImage;
+	item: FileObject;
 	upload?: boolean;
-	setResults?: React.Dispatch<React.SetStateAction<FileObject>>;
+	setResults?: React.Dispatch<React.SetStateAction<FileObject[]>>;
 }
 
 const RowImage: React.FC<Props> = ({ item, upload, setResults }) => {
 
-	const onImageUpload = (fileObj: FileObject): void => {
-		if (setResults) {
-			setResults(prev => prev?.map(file => file._id === item?._id ? { ...file, image: fileObj } : file));
+	const onImageUpload = (fileObj: FileImage | null): void => {
+		if (setResults && item?._id) {
+			setResults(prev => prev?.map(file  => file._id === item._id ? {
+				...file,
+				image: fileObj
+			} : file) as FileObject[]);
 		}
 	};
 

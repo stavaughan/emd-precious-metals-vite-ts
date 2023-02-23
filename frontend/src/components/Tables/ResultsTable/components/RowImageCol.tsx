@@ -1,6 +1,5 @@
 import React from 'react'
 import { RowImage } from '.';
-//import { ResultsItem, SetResults } from '../Results.types';
 import type { FileObject } from '@/components/Upload/components/upload.types';
 
 const RowImageCol: React.FC<{

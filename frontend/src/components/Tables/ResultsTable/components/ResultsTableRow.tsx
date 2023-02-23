@@ -1,14 +1,14 @@
 import { RowImageCol, RowActionCol, ContentRowColumns } from '.';
 import React from 'react'
-import { ColTuple } from '@/contexts/metals-context.types';
-import { ResultsItem, SetResults } from '../Results.types';
+import type { ColTuple } from '@/contexts/metals-context.types';
+import type { FileObject } from '@/components/Upload/components/upload.types';
 
 export interface ResultsTableRowProps {
-	item: ResultsItem
-	upload?: unknown
-	setResults: SetResults
+	item: FileObject
+	upload?: boolean
+	setResults: React.Dispatch<React.SetStateAction<FileObject[] | []>>
 	colClasses: ColTuple
-	setID?: React.Dispatch<React.SetStateAction<string>>;
+	setID: React.Dispatch<React.SetStateAction<string>>;
 	onDelete?: (id: string) => void
 	loading?: boolean
 	deleteId?: string
@@ -24,7 +24,6 @@ const ResultsTableRow: React.FC<ResultsTableRowProps> = ({
 	loading,
 	deleteId
 }) => {
-
 
 	return (
 		<tr>

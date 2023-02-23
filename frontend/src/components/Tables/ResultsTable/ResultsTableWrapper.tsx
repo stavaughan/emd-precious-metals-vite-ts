@@ -5,23 +5,23 @@ import {
 	ResultsTableRow
 } from './components';
 import {
-	StoredMetalValues,
 	FooterTuple,
 	HeadTuple,
 	ColTuple
 } from '@/contexts/metals-context.types';
+import type { FileObject } from '@/components/Upload/components/upload.types';
 
 interface Props {
-	results: StoredMetalValues;
-	setResults: React.Dispatch<React.SetStateAction<StoredMetalValues>>;
-	headItems?: HeadTuple;
-	colClasses?: ColTuple;
+	results: FileObject[] | [];
+	setResults: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
+	headItems: HeadTuple;
+	colClasses: ColTuple;
 	footerContent?: FooterTuple;
-	setID?: () => void;
+	setID: React.Dispatch<React.SetStateAction<string>>;
 	deleteId?: string;
 	loading?: boolean
 	onDelete?: (id: string) => void;
-	upload?: unknown
+	upload?: boolean;
 	sticky?: boolean
 }
 
