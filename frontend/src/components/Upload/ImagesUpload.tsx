@@ -3,10 +3,6 @@ import { ImageDropContainer, useUploadLogic } from './components';
 
 import type { HiddenFileInputType } from '@/components/Gallery/ImageTransformation/image-transformation.types';
 
-import type {
-	OnFileUploadType
-} from '@/components/Forms/Inputs/components/input-components.types';
-
 import type { SetFile, OnUpload } from '@/components/Upload/components/upload.types';
 
 interface ImagesUploadProps {
@@ -47,26 +43,24 @@ const ImagesUpload: React.FC<ImagesUploadProps> = ({
 		hiddenFileInput?.current?.drop();
 	}
 
-	const onFileUpload: OnFileUploadType = (e) => {
-		if(!e.target?.files?.length) return;
+	const onFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (!e.target?.files?.length) return;
 		onImageUpload(e.target.files as unknown as File[])
 	};
 
 	return (
-		<>
-			<ImageDropContainer
-				handleClick={onClickHandler}
-				onDropHandler={handleOnDrop}
-				onFileUpload={onFileUpload}
-				inputRef={hiddenFileInput}
-				noLabel={noLabel}
-				mimeType={mimeType}
-				multiple={multi}
-				maxSize={maxSize}
-				style={style}
-				type={type}
-			/>
-		</>
+		<ImageDropContainer
+			handleClick={onClickHandler}
+			onDropHandler={handleOnDrop}
+			onFileUpload={onFileUpload}
+			inputRef={hiddenFileInput}
+			noLabel={noLabel}
+			mimeType={mimeType}
+			multiple={multi}
+			maxSize={maxSize}
+			style={style}
+			type={type}
+		/>
 	)
 }
 

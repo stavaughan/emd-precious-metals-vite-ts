@@ -10,6 +10,7 @@ import type {
 	StoredMetalPrices,
 	Weight,
 } from "@/features/metals/metals.types";
+import type { FileObject } from '@/components/Upload/components/upload.types';
 
 // Metals Types
 export type MetalType = string;
@@ -89,17 +90,19 @@ export type DropDown = {
 export type MetalsContextType = {
 	metals: Metals | [];
 	printRef: MutableRefObject<HTMLDivElement> | null;
-	pageContent: MetalPageContent | null;
+	pageContent: MetalPageContent;
 	metalPrices: StoredMetalPrices;
 	actionButtons: ButtonParams[] | [];
 	inputValues: InputValues | null;
 	setInputValues: Dispatch<SetStateAction<InputValues>>;
 	dropDownOptions: (values: InputValues) => DropDown | null;
-	setStoredValues: Dispatch<SetStateAction<StoredMetalValues>>;
+	//setStoredValues: Dispatch<SetStateAction<StoredMetalValues>>;
+	setStoredValues: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
 	currentMetalPrices: (metals: APIMetals) => void;
 	hasPrices: boolean | false;
 	hasInputs: boolean | false;
-	storedValues?: StoredMetalValues | [];
+	//storedValues?: StoredMetalValues | [];
+	storedValues?: FileObject[] | [];
 	handleDelete: (id: string) => void;
 	clearResult?: () => void;
 	calculateResult?: () => void;

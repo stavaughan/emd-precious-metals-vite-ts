@@ -17,7 +17,7 @@ interface Props {
 	headItems: HeadTuple;
 	colClasses: ColTuple;
 	footerContent?: FooterTuple;
-	setID: React.Dispatch<React.SetStateAction<string>>;
+	setID?: React.Dispatch<React.SetStateAction<string>>;
 	deleteId?: string;
 	loading?: boolean
 	onDelete?: (id: string) => void;

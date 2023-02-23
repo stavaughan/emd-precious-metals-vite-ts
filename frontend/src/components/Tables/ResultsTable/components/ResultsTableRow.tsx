@@ -8,7 +8,7 @@ export interface ResultsTableRowProps {
 	upload?: boolean
 	setResults: React.Dispatch<React.SetStateAction<FileObject[] | []>>
 	colClasses: ColTuple
-	setID: React.Dispatch<React.SetStateAction<string>>;
+	setID?: React.Dispatch<React.SetStateAction<string>>;
 	onDelete?: (id: string) => void
 	loading?: boolean
 	deleteId?: string

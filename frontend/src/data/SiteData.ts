@@ -28,12 +28,6 @@ type ModalIDs = {
 	imageUploadCrop: string;
 }
 
-type SocialMedia = {
-	id: string;
-	name: string;
-	baseLink: string;
-}
-
 export type SocialIcon = {
 	id: string;
 	name?: string;
@@ -41,6 +35,7 @@ export type SocialIcon = {
 	color?: string;
 	lib?: string;
 	icon: string;
+	prob?: number;
 }
 
 export type AlertIcon = {
@@ -52,17 +47,15 @@ export type AlertIcon = {
 
 type Icons = {
 	social: SocialIcon[];
-	alert: AlertIcon[];
+	alerts: AlertIcon[];
 }
 interface SiteDataTypes {
 	disclosures: Disclosures;
 	modalIDs: ModalIDs;
 	editMessages: object;
 	icons: Icons;
-	socialMedia: SocialMedia[];
+	socialMedia: SocialIcon[];
 }
-
-
 
 const SiteData: SiteDataTypes = {
 	disclosures: {
@@ -317,7 +310,7 @@ const SiteData: SiteDataTypes = {
 				icon: 'info-circle',
 				className: 'info'
 			}
-		]
+		] as AlertIcon[],
 	},
 	socialMedia: [
 		{
@@ -383,7 +376,7 @@ const SiteData: SiteDataTypes = {
 			baseLink: "https://www.pinterest.com/",
 			prob: 0.2
 		}
-	]
+	] as SocialIcon[],
 };
 
 export default SiteData;
