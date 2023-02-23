@@ -12,8 +12,8 @@ import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome';
 import Classes from '../styles/Upload.module.css';
 
 const ResultImage: React.FC<{
-	file: ResultsItem;
-	setFiles: SetResults;
+	file: ResultsItem<any>;
+	setFiles: SetResults<any>;
 }> = ({ file, setFiles }) => {
 
 	const image = file?.image;

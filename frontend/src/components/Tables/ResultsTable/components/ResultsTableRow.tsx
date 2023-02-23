@@ -2,7 +2,7 @@ import { RowImageCol, RowActionCol, ContentRowColumns } from '.';
 import React from 'react'
 import type { ResultsTableRowProps } from '../Results.types';
 
-const ResultsTableRow: React.FC<ResultsTableRowProps> = (props) => {
+const ResultsTableRow: React.FC<ResultsTableRowProps<any>> = (props) => {
 
 	return (
 		<tr>

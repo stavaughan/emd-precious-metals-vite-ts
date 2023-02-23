@@ -6,8 +6,8 @@ import { ResultsImages } from '.';
 import type { Results, SetResults } from '@components/Tables/ResultsTable/Results.types';
 
 const UploadResults: React.FC<{
-	files: Results;
-	setFiles: SetResults;
+	files: Results<any>;
+	setFiles: SetResults<any>;
 }> = ({ files, setFiles }) => {
 
 	const [display, setDisplay] = useState('images');
@@ -48,7 +48,7 @@ const UploadResults: React.FC<{
 										setResults={setFiles}
 									/>
 									{(item?.content && item.content?.length)
-										? item.content.map((col, idx) => (
+										? item.content.map((col: string, idx: number) => (
 											<td key={idx}>{col}</td>
 										)) : null}
 									<RowActionCol

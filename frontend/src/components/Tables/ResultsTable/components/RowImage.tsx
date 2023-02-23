@@ -5,7 +5,7 @@ import { FileImage, Results, ImageRowProps } from '../Results.types';
 import Classes from '../styles/ResultsTable.module.css';
 import ImgClasses from '../../../Gallery/styles/images.module.css';
 
-const RowImage: React.FC<ImageRowProps> = ({
+const RowImage: React.FC<ImageRowProps<any>> = ({
 	item,
 	upload,
 	setResults
@@ -13,11 +13,11 @@ const RowImage: React.FC<ImageRowProps> = ({
 
 	const onImageUpload = (image: FileImage | null): void => {
 		if (setResults && item?._id) {
-			setResults((prev: Results) => prev?.map(file => {
+			setResults((prev: Results<any>) => prev?.map(file => {
 				return file._id === item._id
 					? { ...file, image }
 					: file;
-			}) as Results);
+			}) as Results<any>);
 		}
 	};
 

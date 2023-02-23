@@ -5,7 +5,7 @@ import { RowDelete, RowEditDelete } from '.';
 
 import { ResultsItem, Results, RowActionColProps } from '@/components/Tables/ResultsTable/Results.types';
 
-const RowActionCol: React.FC<RowActionColProps> = ({
+const RowActionCol: React.FC<RowActionColProps<any>> = ({
 	item,
 	image,
 	setResults,
@@ -34,8 +34,8 @@ const RowActionCol: React.FC<RowActionColProps> = ({
 				? {
 					...file,
 					image: {}
-				} : file as ResultsItem
-			) as Results);
+				} : file as ResultsItem<any>
+			) as Results<any>);
 		}
 	}, [itemID, setResults]);
 

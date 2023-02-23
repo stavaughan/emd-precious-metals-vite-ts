@@ -2,7 +2,7 @@ import React from 'react'
 import { ResultsTableHead, ResultsTableFooter, ResultsTableRow } from './components';
 import type { ResultsTableWrapperTypes } from './Results.types';
 
-const ResultsTableWrapper: React.FC<ResultsTableWrapperTypes> = (props) => {
+const ResultsTableWrapper: React.FC<ResultsTableWrapperTypes<any>> = (props) => {
 
 	return (
 		<div className="table-responsive">

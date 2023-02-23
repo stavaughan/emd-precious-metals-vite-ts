@@ -15,10 +15,10 @@ const ResultsCard: React.FC = () => {
 		pageContent,
 		metalPrices,
 		handleDelete,
-		resultsContent
+		storedValues
 	} = useContext(MetalsContext) as MetalsContextType;
 
-	if (!resultsContent?.length) return null;
+	if (!storedValues?.length) return null;
 
 	return (
 		<div ref={printRef}>
@@ -31,7 +31,7 @@ const ResultsCard: React.FC = () => {
 				<CardBody>
 					<div className="mt-2">
 						<ResultsHeaderBar
-							quantity={resultsContent.length}
+							quantity={storedValues.length}
 							headContent={metalPrices?.date && (
 								<div className="text-xs text-slate-500">
 									{Global._Date.formatted(metalPrices.date, 'full')}
@@ -39,8 +39,8 @@ const ResultsCard: React.FC = () => {
 							)}
 						/>
 						<ResultsTableWrapper
-							results={resultsContent}
-							setResults={setStoredValues} // TODO: Create generic type for this
+							results={storedValues}
+							setResults={setStoredValues}
 							headItems={pageContent?.head}
 							colClasses={pageContent?.colClasses}
 							footerContent={pageContent?.footer}

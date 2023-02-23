@@ -9,7 +9,7 @@ import type {
 } from '@/components/Tables/ResultsTable/Results.types';
 
 const useUploadLogic = (
-	setFile?: SetResult,
+	setFile?: SetResult<any>,
 	onUpload?: (file: FileImage) => void,
 	base64?: boolean
 ) => {
@@ -48,7 +48,7 @@ const useUploadLogic = (
 		setFiles,
 		setFile,
 		onUpload
-	}: Unit8Props): Promise<void> => {
+	}: Unit8Props<any>): Promise<void> => {
 		if (files?.length) {
 			const image = files[0] as File;
 			try {
@@ -71,7 +71,7 @@ const useUploadLogic = (
 					url,
 					name,
 					date
-				} as ResultsItem;
+				} as ResultsItem<any>;
 				if (setFile) setFile(fileObj);
 				if (setFiles) setFiles(prev => [...prev, fileObj]);
 				if (onUpload) onUpload(fileImage)
@@ -86,7 +86,7 @@ const useUploadLogic = (
 		setFiles,
 		setFile,
 		onUpload
-	}: Unit8Props) => {
+	}: Unit8Props<any>) => {
 		if (files?.length) {
 			const file = files[0] as File;
 			const regex = /image\/(png|jpeg|jpg|webp|avif)/i;
@@ -120,7 +120,7 @@ const useUploadLogic = (
 						url,
 						name,
 						date
-					} as ResultsItem;
+					} as ResultsItem<any>;
 					if (setFile) setFile(fileObj);
 					if (setFiles) setFiles(prev => [...prev, fileObj]);
 					if (onUpload && fileImage !== null) {

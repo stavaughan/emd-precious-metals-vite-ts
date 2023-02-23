@@ -4,7 +4,7 @@ import { ImageDropContainer, useUploadLogic } from './components';
 import type { HiddenFileInputType } from '@/components/Gallery/ImageTransformation/image-transformation.types';
 import type { ImagesUploadProps } from '@/components/Upload/components/upload.types';
 
-const ImagesUpload: React.FC<ImagesUploadProps> = (props) => {
+const ImagesUpload: React.FC<ImagesUploadProps<any>> = (props) => {
 
 	const {
 		onImageUpload

@@ -2,7 +2,7 @@ import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import type { ButtonParams } from "@/components/Buttons/Buttons.types";
 import type {
 	APIMetals,
-	MetalItem,
+	MetalData,
 	MetalName,
 	Metals,
 	QualityID,
@@ -10,9 +10,10 @@ import type {
 	Weight,
 } from "@/features/metals/metals.types";
 import type {
-	ResultsContent,
-	SetResults,
-	Results
+	//ResultsContent,
+	//SetResults,
+	ResultsItem,
+	//Results
 } from '@/components/Tables/ResultsTable/Results.types';
 
 // Metals Types
@@ -59,13 +60,15 @@ export type StoredContentTuple = [
 	CurrencyAmount
 ] | string[] | [];
 
-export type MetalResultsItem = MetalItem & ResultsContent;
+export type MetalResultsItem =  ResultsItem<MetalData>;
 
 export interface StoredMetalValueItem extends MetalResultsItem {
 	result?: Amount;
 }
 
 export type StoredMetalValues = StoredMetalValueItem[] | [];
+
+export type SetStoredValues = Dispatch<SetStateAction<StoredMetalValues>>;
 
 export type MappedPrices<T> = {
 	[K in keyof T]: number;
@@ -100,12 +103,11 @@ export type MetalsContextType = {
 	inputValues: InputValues | null;
 	setInputValues: Dispatch<SetStateAction<InputValues>>;
 	dropDownOptions: (values: InputValues) => DropDown | null;
-	setStoredValues: SetResults;
+	setStoredValues: SetStoredValues;
 	currentMetalPrices: (metals: APIMetals) => void;
 	hasPrices: boolean | false;
 	hasInputs: boolean | false;
 	storedValues?: StoredMetalValues;
-	resultsContent: Results;
 	handleDelete: (id: string) => void;
 	clearResult?: () => void;
 	calculateResult?: () => void;

@@ -3,7 +3,7 @@ import { RowImage } from '.';
 
 import type { ImageRowProps } from '../Results.types';
 
-const RowImageCol: React.FC<ImageRowProps> = ({
+const RowImageCol: React.FC<ImageRowProps<any>> = ({
 	item,
 	upload,
 	setResults

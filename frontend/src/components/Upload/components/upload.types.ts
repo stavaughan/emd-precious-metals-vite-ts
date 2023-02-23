@@ -2,17 +2,17 @@ import { FileImage, SetResult, SetResults } from '@/components/Tables/ResultsTab
 
 type OnUpload = (file: FileImage) => void;
 
-export interface Unit8Props {
+export interface Unit8Props<T> {
 	files: File[];
-	setFiles?: SetResults;
-	setFile?: SetResult;
+	setFiles?: SetResults<T>;
+	setFile?: SetResult<T>;
 	onUpload?: OnUpload;
 }
 
-export interface ImagesUploadProps {
+export interface ImagesUploadProps<T> {
 	type?: string;
 	maxSize?: string;
-	setFile?: SetResult;
+	setFile?: SetResult<T>;
 	noLabel?: boolean;
 	onUpload?: OnUpload;
 	mimeType?: string;

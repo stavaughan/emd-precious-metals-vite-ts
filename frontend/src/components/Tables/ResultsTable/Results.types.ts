@@ -16,7 +16,7 @@ export type FileImage = object & {
 export type ImageIDContent = {
 	_id?: string;
 	image?: FileImage | null;
-	content?: StrArray;
+	content: StrArray;
 }
 
 export type ResultsContent = {
@@ -27,46 +27,37 @@ export type ResultsContent = {
 	isImage?: boolean;
 }
 
-export type ResultsItem = {
-	_id?: string;
-	image?: FileImage | null;
-	content: StrArray;
-	file?: File | string | ArrayBuffer | null;
-	url?: string;
-	name?: string;
-	date?: string;
-	isImage?: boolean;
-};
+export type ResultsItem<T> = ResultsContent & ImageIDContent & T;
 
-export type Results = ResultsItem[] | [];
+export type Results<T> = ResultsItem<T>[] | [];
 
-export type SetResult = React.Dispatch<React.SetStateAction<ResultsItem | null>>;
+export type SetResult<T> = React.Dispatch<React.SetStateAction<ResultsItem<T>>>;
 
-export type SetResults = React.Dispatch<React.SetStateAction<Results>>;
+export type SetResults<T> = React.Dispatch<React.SetStateAction<Results<T>>>;
 
-export type ImageRowProps = {
-	item: ResultsItem;
+export type ImageRowProps<T> = {
+	item: ResultsItem<T>;
 	upload?: boolean;
-	setResults?: SetResults;
+	setResults?: SetResults<T>;
 };
 
-interface EventTypes {
+interface EventTypes<T> {
 	setID?: SetID;
 	onDelete?: OnDelete;
 	loading?: boolean;
 	deleteId?: string;
-	setResults?: SetResults;
+	setResults?: SetResults<T>;
 	setEditData?: SetEditData;
 	editDone?: boolean;
 }
 
-export type ResultsStateProps = {
-	results: Results;
-	setFiles: SetResults;
+export type ResultsStateProps<T> = {
+	results: Results<T>;
+	setFiles: SetResults<T>;
 };
 
-export interface ResultsTableWrapperTypes extends EventTypes {
-	results: Results;
+export interface ResultsTableWrapperTypes<T> extends EventTypes<T> {
+	results: Results<T>;
 	headItems: StrArray;
 	colClasses: StrArray;
 	footerContent?: string[] | JSX.Element[] | [];
@@ -74,14 +65,14 @@ export interface ResultsTableWrapperTypes extends EventTypes {
 	sticky?: boolean
 }
 
-export interface RowActionColProps extends EventTypes {
-	item?: ResultsItem;
+export interface RowActionColProps<T> extends EventTypes<T> {
+	item?: ResultsItem<T>;
 	image?: FileImage | null;
 	itemID?: string;
 };
 
-export interface ResultsTableRowProps extends EventTypes {
-	item: ResultsItem;
+export interface ResultsTableRowProps<T> extends EventTypes<T> {
+	item: ResultsItem<T>;
 	upload?: boolean;
 	colClasses: StrArray;
 }
