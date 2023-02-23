@@ -21,6 +21,9 @@ import type {
 	IUseSetStorage,
 	StorageReturn
 } from '@/hooks/hooks.types';
+import {
+	Results
+} from '@/components/Tables/ResultsTable/Results.types';
 
 const MetalsContext = createContext({
 	metals: [],
@@ -28,6 +31,7 @@ const MetalsContext = createContext({
 	pageContent: null,
 	metalPrices: null,
 	actionButtons: [],
+	resultsContent: [],
 	dropDownOptions: null,
 	currentMetalPrices: () => { null },
 	storedValues: [],
@@ -41,11 +45,9 @@ const MetalsContext = createContext({
 	spread: 0,
 } as unknown as MetalsContextType);
 
-type Props = {
+export const MetalsProvider: React.FC<{
 	children: React.ReactNode;
-}
-
-export const MetalsProvider: React.FC<Props> = ({ children }: Props) => {
+}> = ({ children }) => {
 
 	const printRef = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
 	const storageType = 'local' as StorageType;
@@ -184,7 +186,7 @@ export const MetalsProvider: React.FC<Props> = ({ children }: Props) => {
 			...prev,
 			{
 				_id: dataID,
-				image: {},
+				image: null,
 				metal: metalTitle,
 				quality: qualityDisplay,
 				qualityID,
@@ -197,6 +199,14 @@ export const MetalsProvider: React.FC<Props> = ({ children }: Props) => {
 		] as StoredMetalValues);
 		clearResult()
 	}, [inputValues, metalValue, clearResult, setStoredValues, storedPrices]);
+
+	const resultsContent = useMemo(() => {
+		return storedValues.map(result => ({
+			_id: result._id,
+			image: result.image,
+			content: result.content
+		})) as Results;
+	}, [storedValues]);
 
 	const pageContent = useMemo(() => {
 		const displayWeight = Global.propTotal(storedValues, 'weight').toFixed(2) as string;
@@ -312,7 +322,7 @@ export const MetalsProvider: React.FC<Props> = ({ children }: Props) => {
 	]);
 
 	const handleDelete = useCallback((id: string): void => {
-		const updateValues = (prev: StoredMetalValues) => prev.filter(item => item._id !== id);
+		const updateValues = (prev: StoredMetalValues) => prev.filter(item => item?._id !== id);
 		setStoredValues(updateValues)
 	}, [setStoredValues])
 
@@ -329,6 +339,7 @@ export const MetalsProvider: React.FC<Props> = ({ children }: Props) => {
 				dropDownOptions,
 				setStoredValues,
 				currentMetalPrices,
+				resultsContent,
 				hasPrices,
 				hasInputs,
 				storedValues,

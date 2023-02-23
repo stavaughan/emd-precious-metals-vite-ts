@@ -1,4 +1,5 @@
 import { StatusState } from '../features.types';
+import type { ImageIDContent } from '@/components/Tables/ResultsTable/Results.types';
 
 export enum METALS_ACTION_TYPES {
 	FETCH_METALS_PENDING = 'metal/FETCH_METALS_PENDING',
@@ -24,22 +25,15 @@ export type File = {
 	type?: string;
 };
 
-export type Image = {
-	file?: File;
-	isImage: boolean;
-	name: string;
-	url: string;
-};
-
-export interface MetalItem {
-	_id?: string;
-	image?: Image;
+export type MetalData = {
 	metal?: MetalName;
 	quality?: QualityLabel;
 	qualityID?: QualityID;
 	metalID?: MetalName;
 	weight?: Weight;
-}
+};
+
+export type MetalItem = ImageIDContent & MetalData;
 
 export type MetalsMap = {
 	[key: string]: MetalItem[];

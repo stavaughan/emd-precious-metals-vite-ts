@@ -2,23 +2,8 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useMobile } from '@/hooks';
 import clsx from 'clsx';
 import { RowDelete, RowEditDelete } from '.';
-import { ResultsItem, Image } from '../Results.types';
-import { FileObject } from '@/components/Upload/components/upload.types';
 
-type ItemID = string;
-
-type RowActionColProps = {
-	item?: ResultsItem;
-	image?: Image;
-	setResults?: React.Dispatch<React.SetStateAction<[] | FileObject[]>>;
-	setEditData?: React.Dispatch<React.SetStateAction<object | null>>;
-	editDone?: boolean;
-	itemID: ItemID;
-	setID?: React.Dispatch<React.SetStateAction<ItemID>>;
-	onDelete?: (id: string) => void;
-	loading?: boolean;
-	deleteId?: string;
-};
+import { ResultsItem, Results, RowActionColProps } from '@/components/Tables/ResultsTable/Results.types';
 
 const RowActionCol: React.FC<RowActionColProps> = ({
 	item,
@@ -49,16 +34,16 @@ const RowActionCol: React.FC<RowActionColProps> = ({
 				? {
 					...file,
 					image: {}
-				} : file as FileObject
-			) as FileObject[]);
+				} : file as ResultsItem
+			) as Results);
 		}
 	}, [itemID, setResults]);
 
 	const deleteHandlerTest = !setEditData || (!!setID && !!setResults);
 
 	const onDeleteHandler = () => {
-		!!setID && setID(itemID)
-		!!onDelete && onDelete(itemID)
+		!!setID && setID(itemID as string)
+		!!onDelete && onDelete(itemID as string)
 		if (setResults) {
 			setResults(prev => prev.filter(_ => _?._id !== itemID));
 		}
@@ -99,7 +84,7 @@ const RowActionCol: React.FC<RowActionColProps> = ({
 				{deleteHandlerTest && (
 					<RowDelete
 						loading={loading}
-						itemID={itemID}
+						itemID={itemID as string}
 						deleteId={deleteId}
 						handleDelete={onDeleteHandler}
 					/>

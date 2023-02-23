@@ -1,12 +1,9 @@
 import React from 'react';
 import { ResultImage } from '.';
 
-import type { FileObject } from '../components/upload.types';
+import type { ResultsStateProps } from '@components/Tables/ResultsTable/Results.types';
 
-const ResultsImages: React.FC<{
-	results: FileObject[] | [];
-	setFiles: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
-}> = ({ results, setFiles }) => {
+const ResultsImages: React.FC<ResultsStateProps> = ({ results, setFiles }) => {
     return (
         <div className="mt-4 row">
             {results.map(file => (

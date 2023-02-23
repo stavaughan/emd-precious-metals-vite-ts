@@ -1,8 +1,8 @@
 import React from 'react'
 
 const ContentRowColumns: React.FC<{
-	colClasses?: string[]
-	content?: string[]
+	colClasses: string[] | []
+	content: string[]
 }> = ({ colClasses, content }) => {
 
 	return (

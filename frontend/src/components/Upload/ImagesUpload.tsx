@@ -2,46 +2,15 @@ import React, { useRef } from 'react';
 import { ImageDropContainer, useUploadLogic } from './components';
 
 import type { HiddenFileInputType } from '@/components/Gallery/ImageTransformation/image-transformation.types';
+import type { ImagesUploadProps } from '@/components/Upload/components/upload.types';
 
-import type { SetFile, OnUpload } from '@/components/Upload/components/upload.types';
-
-interface ImagesUploadProps {
-	type?: string;
-	maxSize?: string;
-	setFile?: SetFile;
-	noLabel?: boolean;
-	onUpload?: OnUpload;
-	mimeType?: string;
-	base64: boolean;
-	style?: React.CSSProperties;
-	multi?: boolean;
-}
-
-const ImagesUpload: React.FC<ImagesUploadProps> = ({
-	type,
-	maxSize,
-	setFile,
-	noLabel,
-	onUpload,
-	mimeType,
-	base64,
-	style,
-	multi
-}) => {
+const ImagesUpload: React.FC<ImagesUploadProps> = (props) => {
 
 	const {
 		onImageUpload
-	} = useUploadLogic(setFile, onUpload, base64);
+	} = useUploadLogic(props.setFile, props.onUpload, props.base64);
 
 	const hiddenFileInput = useRef<HiddenFileInputType | null>(null);
-
-	const onClickHandler = () => {
-		hiddenFileInput?.current?.click()
-	};
-
-	const handleOnDrop = () => {
-		hiddenFileInput?.current?.drop();
-	}
 
 	const onFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (!e.target?.files?.length) return;
@@ -50,16 +19,16 @@ const ImagesUpload: React.FC<ImagesUploadProps> = ({
 
 	return (
 		<ImageDropContainer
-			handleClick={onClickHandler}
-			onDropHandler={handleOnDrop}
+			handleClick={() => hiddenFileInput?.current?.click()}
+			onDropHandler={() => hiddenFileInput?.current?.drop()}
 			onFileUpload={onFileUpload}
 			inputRef={hiddenFileInput}
-			noLabel={noLabel}
-			mimeType={mimeType}
-			multiple={multi}
-			maxSize={maxSize}
-			style={style}
-			type={type}
+			noLabel={props?.noLabel}
+			mimeType={props?.mimeType}
+			multiple={props?.multi}
+			maxSize={props?.maxSize}
+			style={props?.style}
+			type={props?.type}
 		/>
 	)
 }

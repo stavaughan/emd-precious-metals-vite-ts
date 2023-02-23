@@ -24,6 +24,8 @@ const ResultsHeaderBar: React.FC<ResultsHeaderProps> = ({
 
     const hrTest = !!setDisplay || !!headContent;
 
+	const setResDisplay = setDisplay || (() => {});
+
     return (
         <div className="d-flex justify-content-between align-items-center">
             <div className={clsx(
@@ -43,7 +45,7 @@ const ResultsHeaderBar: React.FC<ResultsHeaderProps> = ({
             {hrTest && (
                 <ResultsLayoutSelector
                     display={display}
-                    setDisplay={setDisplay}
+                    setDisplay={setResDisplay}
                     headContent={headContent}
                 />
             )}

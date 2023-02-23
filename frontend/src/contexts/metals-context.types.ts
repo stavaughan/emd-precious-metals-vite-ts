@@ -6,11 +6,14 @@ import type {
 	MetalName,
 	Metals,
 	QualityID,
-	QualityLabel,
 	StoredMetalPrices,
 	Weight,
 } from "@/features/metals/metals.types";
-import type { FileObject } from '@/components/Upload/components/upload.types';
+import type {
+	ResultsContent,
+	SetResults,
+	Results
+} from '@/components/Tables/ResultsTable/Results.types';
 
 // Metals Types
 export type MetalType = string;
@@ -20,33 +23,33 @@ export type Amount = number;
 export type Spread = number;
 
 export interface Metal {
-	metal?: MetalType;
+	metal?: string;
 	quality?: string;
-	weight?: Weight;
+	weight?: number;
 }
 
 export interface InputValues {
-	metal?: MetalName;
+	metal?: string;
 	quality?: string;
-	qualityLabel?: QualityLabel;
-	qualityDisplay?: QualityDisplay;
-	weight?: Weight;
+	qualityLabel?: string;
+	qualityDisplay?: string;
+	weight?: number;
 	weightLabel?: string;
 	wsF?: number;
 }
 
 export type MetalQuality = {
-	_id: QualityID;
-	label: QualityLabel;
-	display: QualityDisplay;
+	_id: string;
+	label: string;
+	display: string;
 	alloy: number;
 }
 
 export interface MetalValues {
 	metalPrice: number;
-	metal: MetalType;
-	weight: Weight;
-	qualityID: QualityID;
+	metal: string;
+	weight: number;
+	qualityID: string;
 }
 
 export type StoredContentTuple = [
@@ -54,22 +57,23 @@ export type StoredContentTuple = [
 	QualityID,
 	Weight,
 	CurrencyAmount
-];
+] | string[] | [];
 
-export interface StoredMetalValueItem extends MetalItem {
+export type MetalResultsItem = MetalItem & ResultsContent;
+
+export interface StoredMetalValueItem extends MetalResultsItem {
 	result?: Amount;
-	content?: StoredContentTuple
 }
 
-export type StoredMetalValues = StoredMetalValueItem[];
+export type StoredMetalValues = StoredMetalValueItem[] | [];
 
 export type MappedPrices<T> = {
 	[K in keyof T]: number;
 }
 
-export type HeadTuple = [string, string, string, string, ''];
-export type ColTuple = ['', '', '', string, string, string];
-export type FooterTuple = ['', '', '',  JSX.Element,  JSX.Element, ''];
+export type HeadTuple = string[] | [];
+export type ColTuple = string[] | [];
+export type FooterTuple = string[] | JSX.Element[] | [];
 
 export type MetalPageContent = {
 	head: HeadTuple;
@@ -88,21 +92,20 @@ export type DropDown = {
 }
 
 export type MetalsContextType = {
-	metals: Metals | [];
-	printRef: MutableRefObject<HTMLDivElement> | null;
+	metals: Metals;
+	printRef: MutableRefObject<HTMLDivElement>;
 	pageContent: MetalPageContent;
 	metalPrices: StoredMetalPrices;
 	actionButtons: ButtonParams[] | [];
 	inputValues: InputValues | null;
 	setInputValues: Dispatch<SetStateAction<InputValues>>;
 	dropDownOptions: (values: InputValues) => DropDown | null;
-	//setStoredValues: Dispatch<SetStateAction<StoredMetalValues>>;
-	setStoredValues: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
+	setStoredValues: SetResults;
 	currentMetalPrices: (metals: APIMetals) => void;
 	hasPrices: boolean | false;
 	hasInputs: boolean | false;
-	//storedValues?: StoredMetalValues | [];
-	storedValues?: FileObject[] | [];
+	storedValues?: StoredMetalValues;
+	resultsContent: Results;
 	handleDelete: (id: string) => void;
 	clearResult?: () => void;
 	calculateResult?: () => void;

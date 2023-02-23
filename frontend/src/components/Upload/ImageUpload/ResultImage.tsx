@@ -5,15 +5,15 @@ import { Col, Row } from '@/components/HTML';
 import { SvgIcons } from '@/components/SVGs';
 import clsx from 'clsx';
 import { Button } from '@/components/Buttons';
-import type { FileObject } from '../components/upload.types';
+
+import type { ResultsItem, SetResults } from '@components/Tables/ResultsTable/Results.types';
 
 import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome';
 import Classes from '../styles/Upload.module.css';
 
-
 const ResultImage: React.FC<{
-	file: FileObject;
-	setFiles: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
+	file: ResultsItem;
+	setFiles: SetResults;
 }> = ({ file, setFiles }) => {
 
 	const image = file?.image;

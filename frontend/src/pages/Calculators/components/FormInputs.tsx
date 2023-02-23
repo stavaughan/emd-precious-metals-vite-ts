@@ -8,7 +8,11 @@ import React, { useCallback, useContext, useMemo } from 'react';
 
 const FormInputs: React.FC = () => {
 
-	const { inputValues, setInputValues, dropDownOptions } = useContext(MetalsContext) as MetalsContextType;
+	const {
+		inputValues,
+		setInputValues,
+		dropDownOptions
+	} = useContext(MetalsContext) as MetalsContextType;
 
 	const ddOptions = dropDownOptions(inputValues as InputValues);
 

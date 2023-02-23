@@ -3,23 +3,19 @@ import type { InputFileUploadProps, InputUploadType } from './components/input-c
 
 const InputFileUpload: React.FC<InputFileUploadProps> = (props) => {
 
-	const inputProps = {
-		...props?.multiple ? {
-			multiple: props?.multiple
-		} : {},
-		className: 'hide',
-		type: 'file',
-		...props?.inputRef ? {
-			ref: props?.inputRef
-		} : {},
-		autoComplete: 'off',
+	const inputProps: InputUploadType = {
+		...props?.multiple ? { multiple: props?.multiple } : {},
+		...props?.inputRef ? { ref: props?.inputRef } : {},
+		accept: props?.mimeType || 'image/*',
 		'aria-describedby': 'fileUpload',
-		'aria-label': 'Upload',
-		tabIndex: -1,
-		value: props?.value || '',
 		onChange: props.onFileUpload,
-		accept: props?.mimeType || 'image/*'
-	} as InputUploadType
+		value: props?.value || '',
+		'aria-label': 'Upload',
+		autoComplete: 'off',
+		className: 'hide',
+		tabIndex: -1,
+		type: 'file',
+	};
 
 	return <input {...inputProps} />
 }

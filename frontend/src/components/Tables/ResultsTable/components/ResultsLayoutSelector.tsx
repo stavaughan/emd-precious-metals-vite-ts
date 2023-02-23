@@ -8,7 +8,11 @@ const ResultsLayoutSelector: React.FC<{
 	display?: string,
 	setDisplay: React.Dispatch<React.SetStateAction<string>>,
 	headContent?: React.ReactNode
-}> = ({ display, setDisplay, headContent }) => {
+}> = ({
+	display,
+	setDisplay,
+	headContent
+}) => {
 
     return (
         <div role="group" className="d-flex flex-grow-0 flex-shrink-0 ps-2 btn-group align-items-center">

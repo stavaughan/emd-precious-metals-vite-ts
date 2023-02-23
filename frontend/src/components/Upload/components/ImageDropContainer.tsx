@@ -7,19 +7,7 @@ import type { ImageDropContainerProps } from '@/components/Forms/Inputs/componen
 
 import Classes from '../styles/Upload.module.css';
 
-const ImageDropContainer: React.FC<ImageDropContainerProps> = ({
-	handleClick,
-	onDropHandler,
-	onFileUpload,
-	inputValue,
-	noLabel,
-	inputRef,
-	multiple,
-	mimeType,
-	maxSize,
-	style,
-	type
-}) => {
+const ImageDropContainer: React.FC<ImageDropContainerProps> = (props) => {
 
 	return (
 		<div
@@ -27,23 +15,23 @@ const ImageDropContainer: React.FC<ImageDropContainerProps> = ({
 			className={clsx(
 				Classes.dropzone,
 				'rounded-2 position-relative',
-				!noLabel && 'mb-4'
+				!props?.noLabel && 'mb-4'
 			)}
-			{...style && { style }}
-			{...handleClick && { onClick: handleClick }}
-			{...onDropHandler && { onDrop: onDropHandler }}
+			{...props?.style && { style: props?.style }}
+			{...props?.handleClick && { onClick: props?.handleClick }}
+			{...props?.onDropHandler && { onDrop: props?.onDropHandler }}
 		>
 			<DropLabel
-				noLabel={noLabel}
-				type={type}
-				maxSize={maxSize}
+				noLabel={props?.noLabel}
+				type={props?.type}
+				maxSize={props?.maxSize}
 			/>
 			<InputFileUpload
-				inputRef={inputRef}
-				onFileUpload={onFileUpload}
-				value={inputValue || ''}
-				mimeType={mimeType}
-				multiple={multiple || false}
+				inputRef={props?.inputRef}
+				onFileUpload={props?.onFileUpload}
+				value={props?.inputValue || ''}
+				mimeType={props?.mimeType}
+				multiple={props?.multiple || false}
 			/>
 		</div>
 	)

@@ -1,10 +1,15 @@
 import { useCallback } from 'react';
 import { toast } from "react-toastify";
 import { acceptedFileTypes } from '.';
-import type { FileImage, FileObject, SetFile, Unit8Props } from '../components/upload.types';
+import type { Unit8Props } from '../components/upload.types';
+import type {
+	FileImage,
+	ResultsItem,
+	SetResult
+} from '@/components/Tables/ResultsTable/Results.types';
 
 const useUploadLogic = (
-	setFile?: SetFile,
+	setFile?: SetResult,
 	onUpload?: (file: FileImage) => void,
 	base64?: boolean
 ) => {
@@ -66,7 +71,7 @@ const useUploadLogic = (
 					url,
 					name,
 					date
-				} as FileObject;
+				} as ResultsItem;
 				if (setFile) setFile(fileObj);
 				if (setFiles) setFiles(prev => [...prev, fileObj]);
 				if (onUpload) onUpload(fileImage)
@@ -115,7 +120,7 @@ const useUploadLogic = (
 						url,
 						name,
 						date
-					} as FileObject;
+					} as ResultsItem;
 					if (setFile) setFile(fileObj);
 					if (setFiles) setFiles(prev => [...prev, fileObj]);
 					if (onUpload && fileImage !== null) {

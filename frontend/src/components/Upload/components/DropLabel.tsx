@@ -1,17 +1,11 @@
 import React from 'react'
 import { ImageIcon } from '.';
 
-type Props = {
+const DropLabel: React.FC<{
 	noLabel?: boolean
 	type?: string
 	maxSize?: string
-}
-
-const DropLabel: React.FC<Props> = ({
-	noLabel,
-	type,
-	maxSize
-}) => {
+}> = ({ noLabel, type, maxSize }) => {
 	return (
 		<>
 			{noLabel ? <ImageIcon noLabel /> : (

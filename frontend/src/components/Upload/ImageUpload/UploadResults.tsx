@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { ResultsHeaderBar } from '@/components/Tables/ResultsTable';
 import { RowImageCol, RowActionCol } from '@/components/Tables/ResultsTable/components';
-import type { FileObject } from '../components/upload.types';
 import { ResultsImages } from '.';
 
+import type { Results, SetResults } from '@components/Tables/ResultsTable/Results.types';
+
 const UploadResults: React.FC<{
-	files: FileObject[] | [];
-	setFiles: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
+	files: Results;
+	setFiles: SetResults;
 }> = ({ files, setFiles }) => {
 
 	const [display, setDisplay] = useState('images');

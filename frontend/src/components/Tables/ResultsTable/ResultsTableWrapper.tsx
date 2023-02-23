@@ -1,69 +1,35 @@
 import React from 'react'
-import {
-	ResultsTableHead,
-	ResultsTableFooter,
-	ResultsTableRow
-} from './components';
-import {
-	FooterTuple,
-	HeadTuple,
-	ColTuple
-} from '@/contexts/metals-context.types';
-import type { FileObject } from '@/components/Upload/components/upload.types';
+import { ResultsTableHead, ResultsTableFooter, ResultsTableRow } from './components';
+import type { ResultsTableWrapperTypes } from './Results.types';
 
-interface Props {
-	results: FileObject[] | [];
-	setResults: React.Dispatch<React.SetStateAction<FileObject[] | []>>;
-	headItems: HeadTuple;
-	colClasses: ColTuple;
-	footerContent?: FooterTuple;
-	setID?: React.Dispatch<React.SetStateAction<string>>;
-	deleteId?: string;
-	loading?: boolean
-	onDelete?: (id: string) => void;
-	upload?: boolean;
-	sticky?: boolean
-}
-
-const ResultsTableWrapper: React.FC<Props> = ({
-	results,
-	setResults,
-	headItems,
-	colClasses,
-	footerContent,
-	setID,
-	deleteId,
-	loading,
-	onDelete,
-	upload,
-}) => {
+const ResultsTableWrapper: React.FC<ResultsTableWrapperTypes> = (props) => {
 
 	return (
 		<div className="table-responsive">
 			<table className="mt-3 table table-hover table-sm align-middle caption-top">
 				<ResultsTableHead
-					headItems={headItems}
-					colClasses={colClasses}
+					headItems={props.headItems}
+					colClasses={props.colClasses}
 				/>
 				<tbody>
-					{results?.length ? results.map(item => (
+					{props.results?.length ? props.results.map(item => (
 						<ResultsTableRow
 							key={item._id}
 							item={item}
-							upload={upload}
-							setResults={setResults}
-							colClasses={colClasses}
-							setID={setID}
-							onDelete={onDelete}
-							loading={loading}
-							deleteId={deleteId}
+							upload={props.upload}
+							setResults={props.setResults}
+							colClasses={props.colClasses}
+							setID={props.setID}
+							onDelete={props.onDelete}
+							loading={props.loading}
+							deleteId={props.deleteId}
 						/>
 					)) : null}
 				</tbody>
-				{footerContent?.length ? (
+				{props.footerContent?.length ? (
 					<ResultsTableFooter
-						content={footerContent}
-						colClasses={colClasses}
+						content={props.footerContent}
+						colClasses={props.colClasses}
 					/>
 				) : null}
 			</table>

@@ -1,24 +1,23 @@
 import React from 'react';
 import { ImagesUpload } from '@/components/Upload';
-import type { FileImage, FileObject } from '@/components/Upload/components/upload.types';
+import { FileImage, Results, ImageRowProps } from '../Results.types';
 
 import Classes from '../styles/ResultsTable.module.css';
 import ImgClasses from '../../../Gallery/styles/images.module.css';
 
-type Props = {
-	item: FileObject;
-	upload?: boolean;
-	setResults?: React.Dispatch<React.SetStateAction<FileObject[]>>;
-}
+const RowImage: React.FC<ImageRowProps> = ({
+	item,
+	upload,
+	setResults
+}) => {
 
-const RowImage: React.FC<Props> = ({ item, upload, setResults }) => {
-
-	const onImageUpload = (fileObj: FileImage | null): void => {
+	const onImageUpload = (image: FileImage | null): void => {
 		if (setResults && item?._id) {
-			setResults(prev => prev?.map(file  => file._id === item._id ? {
-				...file,
-				image: fileObj
-			} : file) as FileObject[]);
+			setResults((prev: Results) => prev?.map(file => {
+				return file._id === item._id
+					? { ...file, image }
+					: file;
+			}) as Results);
 		}
 	};
 

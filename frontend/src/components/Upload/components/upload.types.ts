@@ -1,39 +1,22 @@
-export type FileImage = {
-	isImage: boolean;
-	file?: File;
-	url?: string;
-	name?: string;
-	lastModified?: number;
-}
+import { FileImage, SetResult, SetResults } from '@/components/Tables/ResultsTable/Results.types';
 
-type Name = string;
-type Size = string;
-type Date = string;
-
-type FileContent = [Name, Size, Date];
-
-export type FileObject = {
-	_id: string;
-	image?: FileImage;
-	content: FileContent | [];
-	file?: File | string | ArrayBuffer | null;
-	url?: string;
-	name?: string;
-	date?: string;
-	isImage?: boolean;
-}
-
-export type Files = FileObject[] | [];
-
-export type SetFile = React.Dispatch<React.SetStateAction<FileObject | null>>;
-
-export type SetFiles = React.Dispatch<React.SetStateAction<Files>>;
-
-export type OnUpload = (file: FileImage) => void;
+type OnUpload = (file: FileImage) => void;
 
 export interface Unit8Props {
 	files: File[];
-	setFiles?: SetFiles;
-	setFile?: SetFile;
-	onUpload?: (file: FileImage) => void;
+	setFiles?: SetResults;
+	setFile?: SetResult;
+	onUpload?: OnUpload;
+}
+
+export interface ImagesUploadProps {
+	type?: string;
+	maxSize?: string;
+	setFile?: SetResult;
+	noLabel?: boolean;
+	onUpload?: OnUpload;
+	mimeType?: string;
+	base64: boolean;
+	style?: React.CSSProperties;
+	multi?: boolean;
 }

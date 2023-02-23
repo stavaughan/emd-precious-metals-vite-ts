@@ -5,11 +5,10 @@ import { controlProps } from '@/globals/js';
 import { useMobile } from '@/hooks';
 import { MetalPrice, MetalPricesDate } from '.';
 import { MetalsContext } from '@/contexts';
-import type { MetalsContextType } from '@/contexts/metals-context.types';
 
 const MetalPricesRibbon: React.FC = () => {
 
-	const { metals, metalPrices, hasPrices } = useContext(MetalsContext) as MetalsContextType;
+	const { metals, metalPrices, hasPrices } = useContext(MetalsContext);
 
 	const { isXSmall } = useMobile();
 

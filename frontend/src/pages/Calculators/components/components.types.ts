@@ -12,7 +12,7 @@ export type MetalsProps = {
 	inputValues: CtxTypes.InputValues;
 	setInputValues: Dispatch<SetStateAction<CtxTypes.InputValues>>;
 	dropDownOptions: (inputValues: CtxTypes.InputValues) => CtxTypes.DropDown;
-	setStoredValues: Dispatch<SetStateAction<CtxTypes.StoredMetalValues>>;
+	setStoredValues: Dispatch<SetStateAction<object[] | []>>;
 	currentMetalPrices: (metals: MetalsTypes.APIMetals) => void;
 	hasPrices?: boolean;
 	hasInputs?: boolean;
