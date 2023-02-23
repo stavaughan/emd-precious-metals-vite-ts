@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ImageInputs } from '.';
 import { CloseButton } from '@/components/Buttons/Type';
 import { Button } from '@/components/Buttons';
-import type { CropControlsTypes, PreviewStyle } from '../image-transformation.types';
+import type { CropControlsTypes, ImageDimensions } from '../image-transformation.types';
 
 const CropControls: React.FC<CropControlsTypes> = ({
 	image,
@@ -12,20 +12,17 @@ const CropControls: React.FC<CropControlsTypes> = ({
 	submitLabel
 }) => {
 
-	const [previewStyle, setPreviewStyle] = useState<PreviewStyle>({
-		border: '1px solid var(--slate-300)',
-		objectFit: 'contain',
+	const [previewStyle, setPreviewStyle] = useState<ImageDimensions>({
 		width: 0,
 		height: 0,
 	});
 
 	useEffect(() => {
 		if (image?.completedCrop?.width && image?.completedCrop?.height) {
-			setPreviewStyle(prev => ({
-				...prev,
-				width: image?.completedCrop?.width,
-				height: image?.completedCrop?.height
-			} as PreviewStyle))
+			setPreviewStyle({
+				width: image?.completedCrop?.width || 0,
+				height: image?.completedCrop?.height || 0
+			})
 		}
 	}, [image?.completedCrop?.height, image?.completedCrop?.width])
 
@@ -43,7 +40,11 @@ const CropControls: React.FC<CropControlsTypes> = ({
 							<canvas
 								ref={previewRef}
 								className="rounded d-block mx-auto shadow-lg"
-								style={previewStyle}
+								style={{
+									border: '1px solid var(--slate-300)',
+									objectFit: 'contain',
+									...previewStyle,
+								}}
 							/>
 						</div>
 						<CloseButton handleClose={controlsProps.resetStates} />

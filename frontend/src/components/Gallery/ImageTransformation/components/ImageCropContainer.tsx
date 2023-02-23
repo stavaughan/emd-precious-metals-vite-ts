@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ImageInputs, ImageCropComponent, useImageCrop } from '.';
 import { CloseButton } from '@/components/Buttons/Type';
 import { Button } from '@/components/Buttons';
-import type { UseImageCrop, ImageCropContainerProps } from '../image-transformation.types';
+import type { UseImageCrop, ImageCropContainerProps, ImageDimensions } from '../image-transformation.types';
 
 const ImageCropContainer: React.FC<ImageCropContainerProps> = ({
 	crop,
@@ -14,9 +14,7 @@ const ImageCropContainer: React.FC<ImageCropContainerProps> = ({
 	setImgSrc
 }) => {
 
-	const [previewStyle, setPreviewStyle] = useState<React.CSSProperties>({
-		border: '1px solid var(--slate-300)',
-		objectFit: 'contain',
+	const [previewStyle, setPreviewStyle] = useState<ImageDimensions>({
 		width: 0,
 		height: 0,
 	});
@@ -31,11 +29,10 @@ const ImageCropContainer: React.FC<ImageCropContainerProps> = ({
 
 	useEffect(() => {
 		if (controlsProps?.completedCrop !== null && controlsProps?.completedCrop?.width) {
-			setPreviewStyle(prev => ({
-				...prev,
-				width: controlsProps?.completedCrop?.width,
-				height: controlsProps?.completedCrop?.height
-			}))
+			setPreviewStyle({
+				width: controlsProps?.completedCrop?.width || 0,
+				height: controlsProps?.completedCrop?.height || 0
+			})
 		}
 	}, [controlsProps?.completedCrop])
 
@@ -66,7 +63,11 @@ const ImageCropContainer: React.FC<ImageCropContainerProps> = ({
 							<canvas
 								ref={controlsProps.previewRef}
 								className="rounded d-block mx-auto shadow-lg"
-								style={previewStyle}
+								style={{
+									border: '1px solid var(--slate-300)',
+									objectFit: 'contain',
+									...previewStyle,
+								}}
 							/>
 						</div>
 						<CloseButton handleClose={controlsProps.resetStates} />

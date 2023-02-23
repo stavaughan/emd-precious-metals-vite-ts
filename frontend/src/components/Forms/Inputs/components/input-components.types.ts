@@ -113,8 +113,8 @@ export interface InputNumberTextProps {
 	dec?: number;
 	type?: string;
 	amount?: number;
-	setAmount: (value: number) => void;
-	setEntering?: (value: boolean) => void;
+	setAmount?: React.Dispatch<React.SetStateAction<number>>;
+	setEntering?: React.Dispatch<React.SetStateAction<boolean>>;
 	placeholder?: string;
 	required?: boolean;
 	optional?: boolean;
@@ -154,8 +154,24 @@ export type OnFileUploadType = (e: EventTargetType) => void;
 
 export interface InputFileUploadProps {
 	inputRef?: HiddenFileRefType;
-	onFileUpload?: OnFileUploadType;
+	onFileUpload: HandleChangeType;
 	mimeType?: string;
-	multiple: boolean | 'false';
+	multiple?: boolean;
 	value?: string;
 }
+export interface ImageDropContainerProps extends InputFileUploadProps {
+	handleClick?: () => void;
+	onDropHandler?: (e: React.DragEvent<HTMLDivElement>) => void;
+	inputValue?: string;
+	noLabel?: boolean;
+	maxSize?: string;
+	style?: React.CSSProperties;
+	type?: string;
+}
+
+export interface DropzoneWrapperProps extends ImageDropContainerProps {
+	imageSelected?: boolean;
+	children?: React.ReactNode;
+}
+
+export type InputUploadType = React.InputHTMLAttributes<HTMLInputElement>

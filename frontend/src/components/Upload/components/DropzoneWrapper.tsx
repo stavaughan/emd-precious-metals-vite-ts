@@ -1,26 +1,10 @@
 import React from 'react'
 import { InputFileUpload } from '@/components/Forms/Inputs';
 import clsx from 'clsx';
-import type{ OnFileUploadType, HiddenFileRefType } from '@/components/Forms/Inputs/components/input-components.types';
+import type { DropzoneWrapperProps } from '@/components/Forms/Inputs/components/input-components.types';
 
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
 import Classes from '../styles/Upload.module.css';
-
-interface DropzoneWrapperProps {
-	handleClick?: () => void;
-	onDropHandler?: (e: React.DragEvent<HTMLDivElement>) => void;
-	imageSelected?: boolean;
-	onFileUpload?: OnFileUploadType;
-	inputValue?: string;
-	noLabel?: boolean;
-	inputRef: HiddenFileRefType;
-	multiple?: boolean;
-	mimeType?: string;
-	maxSize?: string;
-	children?: React.ReactNode;
-	style?: React.CSSProperties;
-	type?: string;
-}
 
 const centeredStyle: React.CSSProperties = {
 	opacity: 0.7,

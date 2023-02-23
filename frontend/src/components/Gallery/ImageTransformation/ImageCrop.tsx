@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { useImageMethods, ImageCropWrapper } from './components';
 import { ImageDropContainer } from '@/components/Upload/components';
 import type { ImageCropProps, HiddenFileInputType } from './image-transformation.types';
-import type{ EventTargetType} from '@/components/Forms/Inputs/components/input-components.types';
 import type { Crop } from 'react-image-crop';
 
 import 'react-image-crop/dist/ReactCrop.css';
@@ -28,7 +27,7 @@ const ImageCrop: React.FC<ImageCropProps> = ({
 		hiddenFileInput?.current?.drop();
 	}
 
-	const onFileUpload = (e: EventTargetType) => {
+	const onFileUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		if (!e.target?.files?.length) return;
 		!!setImageUpload && setImageUpload(true)
 		onSelectImage({

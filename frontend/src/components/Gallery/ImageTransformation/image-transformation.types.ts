@@ -103,7 +103,7 @@ export interface DropzoneWrapperProps {
 	handleClick?: () => void;
 	onDropHandler?: (e: React.DragEvent<HTMLDivElement>) => void;
 	imageSelected?: boolean;
-	onFileUpload: React.ChangeEventHandler<HTMLInputElement>;
+	onFileUpload?: React.ChangeEventHandler<HTMLInputElement>;
 	inputValue?: string;
 	noLabel?: boolean;
 	inputRef?: React.RefObject<HTMLInputElement>;

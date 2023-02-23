@@ -4,8 +4,6 @@ import { Global } from '@/globals/js';
 import type { InputNumberTextProps } from './input-components.types';
 
 const InputNumberText: React.FC<InputNumberTextProps> = ({
-	//dec,
-	//type = "text",
 	amount,
 	setAmount,
 	setEntering,
@@ -13,7 +11,6 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 	required,
 	optional,
 	onBlur,
-	//setMin,
 	label,
 	...props
 }) => {
@@ -29,7 +26,7 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 	const handleValueChange = (value: string | '') => {
 		const textValue: string = value.trim();
 		const numValue = Global.allNumberCharacters(textValue);
-		setAmount(textValue ? Number(numValue) : 0);
+		!!setAmount && setAmount(textValue ? Number(numValue) : 0);
 		setNumberValue(textValue ? numValue.toString() : '');
 		!!setEntering && setEntering(true);
 	};
@@ -43,8 +40,7 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 			optional={optional}
 			label={label}
 			onBlur={onBlur}
-			{...props}
-		/>
+			{...props}		/>
 	)
 }
 

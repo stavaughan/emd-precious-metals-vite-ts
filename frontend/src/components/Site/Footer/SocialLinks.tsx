@@ -1,9 +1,16 @@
 import React, { useMemo, useCallback } from 'react'
 import { controlProps } from '@/globals/js'
-import { SiteData } from '@/data'
+import { SiteData } from '@/data';
 import type { SettingsData } from '@/features/settings/settings.types';
 import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+
+type SocialMediaSettings = {
+	media: string;
+	url: string;
+	profileName: string;
+	accountLink: string;
+}
 
 const SocialLinks: React.FC<SettingsData> = ({ settings }) => {
 
@@ -17,7 +24,7 @@ const SocialLinks: React.FC<SettingsData> = ({ settings }) => {
 
 	const siteSocialMedia = useMemo(() => {
 		if (!settings?.social?.length) return [];
-		return settings?.social?.filter(media => media?.profileName);
+		return settings?.social?.filter(media => media?.profileName) as SocialMediaSettings[] | [];
 	}, [settings]);
 
 	const socialProfiles = useMemo(() => {
@@ -30,7 +37,7 @@ const SocialLinks: React.FC<SettingsData> = ({ settings }) => {
 	}, [settings]);
 
 	const sIcon = useCallback((id: string) => {
-		const iconObj = SiteData.icons?.social.find(icon => icon.id === id);
+		const iconObj = SiteData.icons.social.find(icon => icon.id === id);
 		return iconObj?.icon as string;
 	}, []);
 

@@ -16,8 +16,8 @@
   },
   "author": "Stephen Vaughan",
   "engines": {
-    "node": ">= 16.17.0",
-    "npm": ">= 8.15.0"
+    "node": ">= 18.13",
+    "npm": ">= 8.19.3"
   },
   "license": "ISC",
   "dependencies": {

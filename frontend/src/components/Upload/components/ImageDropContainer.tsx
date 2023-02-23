@@ -3,23 +3,9 @@ import clsx from 'clsx';
 import { InputFileUpload } from '@/components/Forms/Inputs';
 import { DropLabel } from '.';
 
-import type { HiddenFileRefType, OnFileUploadType } from '@/components/Forms/Inputs/components/input-components.types';
+import type { ImageDropContainerProps } from '@/components/Forms/Inputs/components/input-components.types';
 
 import Classes from '../styles/Upload.module.css';
-
-export type ImageDropContainerProps = {
-	handleClick?: () => void;
-	onDropHandler?: () => void;
-	onFileUpload?: OnFileUploadType;
-	inputValue?: string;
-	noLabel?: boolean;
-	inputRef: HiddenFileRefType;
-	multiple?: boolean;
-	mimeType?: string;
-	maxSize?: string;
-	style?: React.CSSProperties;
-	type?: string;
-};
 
 const ImageDropContainer: React.FC<ImageDropContainerProps> = ({
 	handleClick,
@@ -34,6 +20,7 @@ const ImageDropContainer: React.FC<ImageDropContainerProps> = ({
 	style,
 	type
 }) => {
+
 	return (
 		<div
 			tabIndex={0}
