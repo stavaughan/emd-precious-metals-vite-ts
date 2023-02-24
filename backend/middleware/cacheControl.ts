@@ -1,6 +1,10 @@
 import type { NextFunction, Request, Response } from 'express';
 
-export const setCache = (req: Request, res: Response, next: NextFunction) => {
+export const setCache = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   // period in seconds
   const period = 60 * 60 * 24;
 
