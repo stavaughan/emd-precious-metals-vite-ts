@@ -53,11 +53,11 @@ export default defineConfig(({ command, mode }) => {
 					'~bootstrap': pathResolve('node_modules/bootstrap'),
 				},
 			},
-			build: {
-				manifest: true,
-				outDir: path.resolve(__dirname, 'build'),
-				minify: true,
-			}
+			// build: {
+			// 	manifest: true,
+			// 	outDir: path.resolve(__dirname, 'build'),
+			// 	minify: true,
+			// }
 		}
 	}
 });
