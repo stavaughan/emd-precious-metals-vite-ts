@@ -101,16 +101,18 @@ app.use(`${PREFIX}/metals`, metalsRouter);
 // TODO: Refactor for production
 if (process.env.NODE_ENV === 'development') {
   app.get('/*', (_req, res: Response) => res.send(messages.noAccess()));
-} else {
-  app.use(
-    express.static(path.join(__dirname, '../frontend'), {
-      maxAge: 31557600000,
-    })
-  );
-  app.get('/*', (_req, res: Response) =>
-    res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
-  );
 }
+
+// else {
+//   app.use(
+//     express.static(path.join(__dirname, '../frontend'), {
+//       maxAge: 31557600000,
+//     })
+//   );
+//   app.get('/*', (_req, res: Response) =>
+//     res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
+//   );
+// }
 
 app.use((_req, res: Response) => {
   res.status(404);
