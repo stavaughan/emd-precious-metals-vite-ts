@@ -23,7 +23,7 @@ connectDB();
 const app = express();
 const PREFIX = '/api';
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 4444);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   const startTime = process.hrtime();
