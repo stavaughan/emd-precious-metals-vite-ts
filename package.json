@@ -4,7 +4,7 @@
   "description": "Gold, platinum and silver scrap calculator based on current spot prices with React frontend and NodeJS server",
   "private": true,
   "scripts": {
-    "build-dev": "webpack",
+    "build": "webpack",
     "server": "node dist/server-bundle.js",
     "test": "jest --detectOpenHandles --watchAll",
     "coverage": "jest --coverage",
