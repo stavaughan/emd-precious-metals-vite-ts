@@ -16,7 +16,11 @@
     "prettier": "prettier --check \"backend/**/*.ts\"",
     "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build:prod",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build:prod --prefix frontend",
-    "cancel": "heroku builds:cancel -a emd-precious-metals-vite-ts"
+    "cancel": "heroku builds:cancel -a emd-precious-metals-vite-ts",
+    "logs": "heroku logs -a emd-precious-metals-vite-ts --tail",
+    "purge": "heroku builds:cache:purge -a emd-precious-metals-vite-ts",
+    "commit-empty": "git commit --allow-empty -m 'Purge cache'",
+    "purge-empty": "npm run purge && npm run commit-empty"
   },
   "author": "Stephen Vaughan",
   "engines": {
