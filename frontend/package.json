@@ -6,7 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"start": "vite",
-		"build": "tsc && vite build --watch",
+		"build-dev": "tsc && vite build --watch",
+		"build": "tsc && vite build",
 		"debug": "node --inspect-brk vite",
 		"serve": "vite preview",
 		"test": "vitest"

@@ -28,16 +28,12 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		build: {
-			// to make tests faster
 			minify: false,
 		},
 		test: {
 			globals: true,
 			environment: 'jsdom',
-			setupFiles: './vitest.setup.ts',
-			// you might want to disable it, if you don't have tests that rely on CSS
-			// since parsing CSS is slow
-			// css: true,
+			setupFiles: './vitest.setup.ts'
 		},
 	};
 });
