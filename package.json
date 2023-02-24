@@ -15,7 +15,7 @@
     "dev": "concurrently \"npm run start:dev\" \"npm run client\"",
     "lint": "eslint backend/**/*.ts",
     "prettier": "prettier --check \"backend/**/*.ts\"",
-    "heroku-prebuild": "npm install --only=dev && build:prod",
+    "heroku-prebuild": "npm install --only=dev && npm run build:prod",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Stephen Vaughan",
