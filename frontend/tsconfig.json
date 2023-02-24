@@ -27,14 +27,12 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
-
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
 		],
 		"skipLibCheck": false,
-
 		"isolatedModules": true,
 		"jsx": "react"
 	},
