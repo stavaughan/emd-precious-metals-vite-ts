@@ -105,14 +105,9 @@ export const errorHandler = (
   if (err?.message) {
     // eslint-disable-next-line no-console
     console.log(`error ${err.message}`);
-    if (
-      err.message.includes('ECONNREFUSED') ||
-      err.message.includes('ECONNABORTED') ||
-      err.message.includes('ENOTFOUND') ||
-      err.message.includes('ECONNRESET')
-    ) {
-      return res.status(500).send({ message: messages.serverError });
-    }
+    return res.status(res?.statusCode).send({
+      message: err?.message || responseTypeMessage(res.statusCode),
+    });
   }
 
   res.status(res?.statusCode).send({
