@@ -56,7 +56,7 @@ export default defineConfig(({ command, mode }) => {
 			build: {
 				rollupOptions: {
 					input: {
-						main: path.resolve(__dirname, 'build/index.html'),
+						main: path.resolve(__dirname, 'app/frontend/build/index.html'),
 					},
 				},
 				minify: true,
