@@ -1,1 +1,1 @@
-web: npm run webpack && node dist/server.js
+web: npm run build-server
