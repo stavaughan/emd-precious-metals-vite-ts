@@ -112,17 +112,6 @@ if (process.env.NODE_ENV === 'development') {
   );
 }
 
-// else {
-//   app.use(
-//     express.static(path.join(__dirname, '../frontend'), {
-//       maxAge: 31557600000,
-//     })
-//   );
-//   app.get('/*', (_req, res: Response) =>
-//     res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
-//   );
-// }
-
 app.use((_req, res: Response) => {
   res.status(404);
   res.format({
