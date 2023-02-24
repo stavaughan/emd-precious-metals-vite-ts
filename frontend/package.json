@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "vite",
 		"build:dev": "tsc && vite build --watch",
-		"build:prod": "tsc && vite build && vite preview",
+		"build:prod": "tsc && vite build && npm start",
 		"debug": "node --inspect-brk vite",
 		"serve": "vite preview",
 		"test": "vitest"
