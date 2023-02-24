@@ -59,7 +59,7 @@ const responseTypeMessage = (statusCode?: number) => {
     case 451:
       return 'Unavailable For Legal Reasons';
     case 500:
-      return messages.serverError;
+      return `Response code 500::${messages.serverError}`;
     case 501:
       return 'Not Implemented';
     case 502:
