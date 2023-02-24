@@ -18,7 +18,4 @@ describe('App Test', () => {
       request(app).get('/api/settings').expect(200, done);
     });
   });
-}) as unknown as (
-  name: string | number | Function | jest.FunctionLike,
-  fn: jest.EmptyFunction
-) => void;
+});
