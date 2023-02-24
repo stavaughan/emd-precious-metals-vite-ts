@@ -19,8 +19,7 @@
     "cancel": "heroku builds:cancel -a emd-precious-metals-vite-ts",
     "logs": "heroku logs -a emd-precious-metals-vite-ts --tail",
     "purge": "heroku builds:cache:purge -a emd-precious-metals-vite-ts",
-    "commit-empty": "git commit --allow-empty -m 'Purge cache'",
-    "purge-empty": "npm run purge && npm run commit-empty"
+    "commit-empty": "git commit --allow-empty -m 'Purge cache'"
   },
   "author": "Stephen Vaughan",
   "engines": {
