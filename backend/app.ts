@@ -98,16 +98,17 @@ app.use(
 app.use(`${PREFIX}/app-settings`, settingsRouter);
 app.use(`${PREFIX}/metals`, metalsRouter);
 
+// TODO: Refactor for production
 if (process.env.NODE_ENV === 'development') {
   app.get('/*', (_req, res: Response) => res.send(messages.noAccess()));
 } else {
   app.use(
-    express.static(path.join(__dirname, '../frontend/build'), {
+    express.static(path.join(__dirname, '../frontend'), {
       maxAge: 31557600000,
     })
   );
   app.get('/*', (_req, res: Response) =>
-    res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+    res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
   );
 }
 
