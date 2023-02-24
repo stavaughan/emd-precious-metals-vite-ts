@@ -7,7 +7,7 @@
     "build:prod": "webpack --config ./webpack.config.js --mode='production'",
     "build:dev": "webpack",
     "start:dev": "webpack && node dist/server.js",
-    "start:prod": "node dist/server.js",
+    "start": "node dist/server.js",
     "test": "jest --detectOpenHandles --watchAll",
     "coverage": "jest --coverage",
     "client": "npm start --prefix frontend",
