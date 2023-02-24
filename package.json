@@ -6,7 +6,6 @@
   "scripts": {
     "build:prod": "webpack --config ./webpack.config.js --mode='production'",
     "build:dev": "webpack",
-    "postinstall": "npm run build:prod",
     "start:dev": "webpack && node dist/server.js",
     "start:prod": "node dist/server.js",
     "test": "jest --detectOpenHandles --watchAll",
@@ -15,7 +14,7 @@
     "dev": "concurrently \"npm run start:dev\" \"npm run client\"",
     "lint": "eslint backend/**/*.ts",
     "prettier": "prettier --check \"backend/**/*.ts\"",
-    "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm install --only=dev",
+    "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build:prod",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Stephen Vaughan",
