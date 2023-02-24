@@ -5,9 +5,6 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 
-	const DOMAIN =
-		mode === 'development' ? env.VITE_DOMAIN_DEV : env.VITE_DOMAIN_PROD;
-
 	const pathResolve = (dir: string) => path.resolve(__dirname, '.', dir);
 
 	return {
@@ -16,7 +13,9 @@ export default defineConfig(({ mode }) => {
 			host: true,
 			proxy: {
 				'/api': {
-					target: DOMAIN,
+					target: mode === 'development'
+						? env.VITE_DOMAIN_DEV
+						: env.VITE_DOMAIN_PROD,
 				},
 			},
 		},
