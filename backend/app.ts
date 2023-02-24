@@ -108,7 +108,7 @@ if (process.env.NODE_ENV === 'development') {
     })
   );
   app.get('/*', (_req, res: Response) =>
-    res.sendFile(path.resolve(__dirname, '.'))
+    res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
   );
 }
 

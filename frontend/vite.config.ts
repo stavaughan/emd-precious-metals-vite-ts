@@ -54,7 +54,8 @@ export default defineConfig(({ command, mode }) => {
 				},
 			},
 			build: {
-				// outDir: path.resolve(__dirname, 'build'),
+				manifest: true,
+				outDir: path.resolve(__dirname, 'build'),
 				minify: true,
 			}
 		}
