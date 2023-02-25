@@ -1,26 +1,22 @@
+import type { ButtonParams } from "@/components/Buttons/Buttons.types";
+import type { APIMetals, MetalPrices, Metals } from "@/features/metals/metals.types";
 import { amountUSD, Global } from "@/globals/js";
 import { preciousMetals } from "@/globals/js/lib";
 import { useSetStorage } from "@/hooks";
-import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { IUseSetStorage, StorageReturn, StorageType } from '@/hooks/hooks.types';
 import type { MutableRefObject } from "react";
-import type { MetalPrices, APIMetals, Metals } from "@/features/metals/metals.types";
-import type { ButtonParams } from "@/components/Buttons/Buttons.types";
+import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type {
 	InputValues,
+	MetalPageContent,
 	MetalQuality,
-	StoredContentTuple,
+	MetalsContextType,
 	MetalType,
 	MetalValues,
-	StoredMetalValues,
 	Spread,
-	MetalsContextType,
-	MetalPageContent
+	StoredContentTuple,
+	StoredMetalValues
 } from "./metals-context.types";
-import type {
-	StorageType,
-	IUseSetStorage,
-	StorageReturn
-} from '@/hooks/hooks.types';
 
 const MetalsContext = createContext({
 	metals: [],
@@ -48,20 +44,14 @@ export const MetalsProvider: React.FC<{
 	const printRef = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
 	const storageType = 'local' as StorageType;
 
-	const [
-		spread,
-		setSpread
-	] = useSetStorage({
+	const [spread, setSpread] = useSetStorage({
 		storageKey: 'metalSpread',
 		typeKey: storageType,
 		defaultValue: 10
 	} as IUseSetStorage) as unknown as StorageReturn<Spread>;
 
 	// metal prices in storage. ie { gold: 2000, silver: 30, platinum: 1000, date: '2021-01-01' }
-	const [
-		storedPrices,
-		setStoredPrices
-	] = useSetStorage({
+	const [storedPrices, setStoredPrices] = useSetStorage({
 		storageKey: 'metalPrices',
 		typeKey: storageType,
 		defaultValue: {}
@@ -145,36 +135,33 @@ export const MetalsProvider: React.FC<{
 		const alloyDivisor = metal === 'gold' ? 24 : 1000;
 
 		// 2.34 grams expressed as 2340 to avoid javascript floating point rounding errors
-		const gramsOfMetal = weight * alloy / alloyDivisor;
+		const gramsOfMetal = weight * ( alloy / alloyDivisor );
 		const ouncesOfMetal = gramsOfMetal / GRAMS_PER_TROY_OUNCE;
-		const netValue = ouncesOfMetal * metalPrice * ((100 - spread) / 100)
+		const netValue = ouncesOfMetal * metalPrice * ((100 - spread) / 100);
 
 		return netValue / 1000;
 	}, [spread]);
 
 	const calculateResult = useCallback(() => {
-		const weight = inputValues?.weight ? inputValues?.weight / 1000 : 0;
+		const weight = inputValues?.weight ? inputValues?.weight : 0;
 		const metal = inputValues?.metal || 'gold';
 		const metalTitle = inputValues?.metal ? Global.upperCaseFirst(inputValues?.metal) : '';
 		const metalPrice = storedPrices?.[metal as keyof typeof storedPrices] || 0;
 		const qualityID = inputValues?.quality || '';
 		const qualityDisplay = inputValues?.qualityDisplay || '';
-		const metalData = {
+		const displayWeight = Global.formatNumber(weight / 1000);
+		const result = metalValue({
 			metalPrice,
 			metal,
 			weight,
 			qualityID
-		};
-		const result = metalValue(metalData);
-		const formAmount = amountUSD({
-			num: result,
-			dec: 2
 		});
+		const formAmount = amountUSD({ num: result, dec: 2 });
 		const dataID = Global.objectIDsGenerator(1)[0];
 		const content = [
 			metalTitle,
 			qualityDisplay,
-			weight,
+			displayWeight,
 			formAmount
 		] as StoredContentTuple
 
@@ -189,7 +176,7 @@ export const MetalsProvider: React.FC<{
 				metalID: metal,
 				amount: formAmount,
 				result,
-				weight,
+				weight: weight / 1000,
 				content
 			}
 		] as StoredMetalValues);
@@ -197,10 +184,18 @@ export const MetalsProvider: React.FC<{
 	}, [inputValues, metalValue, clearResult, setStoredValues, storedPrices]);
 
 	const pageContent = useMemo(() => {
-		const displayWeight = Global.propTotal(storedValues, 'weight').toFixed(2) as string;
+		const metalIDs = storedValues.map(_ => _.metalID) as string[];
+		const qualityIDs = storedValues.map(_ => _.qualityID) as string[];
+		const sameMetalIDs = metalIDs.every(_ => _ === metalIDs[0]);
+		const sameQualityIDs = qualityIDs.every(_ => _ === qualityIDs[0]);
+		const sameMetalAndQuality = sameMetalIDs && sameQualityIDs;
+		const totalWeight = Global.propTotal(storedValues, 'weight') as number;
+		const displayWeight = Global.formatNumber(totalWeight);
 		const resuleValue = Global.propTotal(storedValues, 'result') as number;
 		const displayValue = amountUSD({ num: resuleValue, dec: 2 }) as string;
-		const jsxWeight = <span className="fw-bolder text-dark">{displayWeight}</span> as JSX.Element;
+
+		// TODO: Refactor to break down weight totals by metal and quality
+		const jsxWeight = sameMetalAndQuality ? <span className="fw-bolder text-dark">{displayWeight}</span> as JSX.Element : <span className="fw-bolder text-dark">N/A</span> as JSX.Element;
 		const jsxValue = <span className="fw-bolder text-dark">{displayValue}</span> as JSX.Element;
 		return {
 			head: [

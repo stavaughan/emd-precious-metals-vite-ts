@@ -84,6 +84,13 @@ const Global = {
 		const generatedIds: string[] = Global.generateUUIDs(count);
 		return Global.removeDuplicates(generatedIds);
 	},
+
+	formatNumber: (value: number | string, decimals: number = 2) => {
+		if(!value) return;
+		const num = Number(value);
+		if(isNaN(num)) return;
+		return num.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+	}
 };
 
 export default Global;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import type { DefaultValue } from "./hooks.types";
 
 const useLocalStorage = (key: string, initialValue: DefaultValue) => {
@@ -6,8 +7,7 @@ const useLocalStorage = (key: string, initialValue: DefaultValue) => {
 		try {
 			const item = window.localStorage.getItem(key);
 			return item ? JSON.parse(item) : initialValue;
-		} catch (error) {
-			console.log(error);
+		} catch (err: any) {
 			return initialValue;
 		}
 	});
@@ -17,8 +17,8 @@ const useLocalStorage = (key: string, initialValue: DefaultValue) => {
 			const valueToStore = value instanceof Function ? value(storedValue) : value;
 			setStoredValue(valueToStore);
 			window.localStorage.setItem(key, JSON.stringify(valueToStore));
-		} catch (error) {
-			console.log(error);
+		} catch (err: any) {
+			toast.error('Error saving to local storage');
 		}
 	};
 

@@ -45,7 +45,6 @@ const FormInputs: React.FC = () => {
 
 	const onSetWeight = (value: string) => {
 		const weightVal = Global.numbersOnly(value);
-
 		if (weightVal) {
 			setInputValues((prev) => ({
 				...prev,
