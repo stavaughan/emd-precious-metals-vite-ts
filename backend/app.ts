@@ -108,11 +108,6 @@ if (process.env.NODE_ENV === 'development') {
     })
   );
   app.get('/*', (_req, res: Response) => {
-    // eslint-disable-next-line no-console
-    console.log({
-      dirname: __dirname,
-      path: path.resolve(__dirname, '../frontend/dist/index.html'),
-    });
     res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
   });
 }

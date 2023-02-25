@@ -1,14 +1,16 @@
-import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
+import { createViteBuild } from './build/vite/build';
+import { createViteResolve } from './build/vite/resolve';
+import { createViteServer } from './build/vite/server';
+import { createVitePlugins } from './build/vite/plugins';
 
 export default defineConfig(({ command, mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 
-	const pathResolve = (dir: string) => path.resolve(__dirname, '.', dir);
 	if (command === 'serve') {
 		return {
-			plugins: [react()],
+			plugins: createVitePlugins(),
+			// server: createViteServer(),
 			server: {
 				host: true,
 				proxy: {
@@ -17,16 +19,11 @@ export default defineConfig(({ command, mode }) => {
 					},
 				},
 			},
-			resolve: {
-				alias: {
-					'@': pathResolve('src'),
-					'~': pathResolve('node_modules'),
-					'~bootstrap': pathResolve('node_modules/bootstrap'),
-				},
-			},
-			build: {
-				minify: false,
-			},
+			resolve: createViteResolve(__dirname),
+			build: createViteBuild(),
+			// build: {
+			// 	minify: false,
+			// },
 			test: {
 				globals: true,
 				environment: 'jsdom',
@@ -35,29 +32,20 @@ export default defineConfig(({ command, mode }) => {
 		}
 	} else {
 		return {
-			plugins: [react()],
-			server: {
-				host: true,
-				proxy: {
-					'/api': {
-						target: './api',
-						changeOrigin: true,
-						rewrite: (path) => path.replace(/^\/api/, ''),
-					},
-				},
-			},
-			resolve: {
-				alias: {
-					'@': pathResolve('src'),
-					'~': pathResolve('node_modules'),
-					'~bootstrap': pathResolve('node_modules/bootstrap'),
-				},
-			},
-			// build: {
-			// 	manifest: true,
-			// 	outDir: path.resolve(__dirname, 'build'),
-			// 	minify: true,
-			// }
+			plugins: createVitePlugins(),
+			// server: {
+			// 	host: true,
+			// 	proxy: {
+			// 		'/api': {
+			// 			target: './api',
+			// 			changeOrigin: true,
+			// 			rewrite: (path) => path.replace(/^\/api/, ''),
+			// 		},
+			// 	},
+			// },
+			server: createViteServer(),
+			resolve: createViteResolve(__dirname),
+			build: createViteBuild(),
 		}
 	}
 });
