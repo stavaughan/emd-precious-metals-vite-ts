@@ -165,6 +165,8 @@ export const MetalsProvider: React.FC<{
 			formAmount
 		] as StoredContentTuple
 
+		// TODO: add update feature when user re-fetches prices
+		// TODO: add date to stored values as well as metal price the create useEffect that evaluates metal price against stored prices and updates stored values if they are different
 		setStoredValues((prev) => [
 			...prev,
 			{

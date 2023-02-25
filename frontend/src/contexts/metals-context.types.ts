@@ -9,12 +9,7 @@ import type {
 	StoredMetalPrices,
 	Weight,
 } from "@/features/metals/metals.types";
-import type {
-	//ResultsContent,
-	//SetResults,
-	ResultsItem,
-	//Results
-} from '@/components/Tables/ResultsTable/Results.types';
+import type { ResultsItem } from '@/components/Tables/ResultsTable/Results.types';
 
 // Metals Types
 export type MetalType = string;
