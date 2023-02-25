@@ -16,6 +16,8 @@ import metalsRouter from './routes/metalsRouter';
 import settingsRouter from './routes/settingsRouter';
 import messages from './utils/messages';
 
+// TODO: convert to SSR see: https://vitejs.dev/guide/ssr.html
+
 dotenv.config();
 
 connectDB();
@@ -98,12 +100,11 @@ app.use(
 app.use(`${PREFIX}/app-settings`, settingsRouter);
 app.use(`${PREFIX}/metals`, metalsRouter);
 
-// TODO: Refactor for production
 if (process.env.NODE_ENV === 'development') {
   app.get('/*', (_req, res: Response) => res.send(messages.noAccess()));
 } else {
   app.use(
-    express.static(path.join(__dirname, '../frontend'), {
+    express.static(path.join(__dirname, '../frontend/dist'), {
       maxAge: 31557600000,
     })
   );
