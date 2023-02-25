@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv } from 'vite';
-import { createViteBuild } from './viteConfig/build';
-import { createViteResolve } from './viteConfig/resolve';
-import { createViteServer } from './viteConfig/server';
-import { createVitePlugins } from './viteConfig/plugins';
+import configBuild from './viteConfig/build';
+import configResolve from './viteConfig/resolve';
+import configServer from './viteConfig/server';
+import configPlugins from './viteConfig/plugins';
 
 export type Mode = 'development' | 'production';
 export type Command = 'serve' | 'build';
@@ -22,10 +22,10 @@ export default defineConfig(({
 
 	if (command === 'serve') {
 		return {
-			plugins: createVitePlugins(mode as Mode),
-			server: createViteServer(DOMAIN),
-			resolve: createViteResolve(__dirname),
-			build: createViteBuild(),
+			plugins: configPlugins(mode as Mode),
+			server: configServer(DOMAIN),
+			resolve: configResolve(__dirname),
+			build: configBuild(),
 			test: {
 				globals: true,
 				environment: 'jsdom',
@@ -34,10 +34,10 @@ export default defineConfig(({
 		}
 	} else {
 		return {
-			plugins: createVitePlugins(mode as Mode),
-			server: createViteServer(DOMAIN),
-			resolve: createViteResolve(__dirname),
-			build: createViteBuild(),
+			plugins: configPlugins(mode as Mode),
+			server: configServer(DOMAIN),
+			resolve: configResolve(__dirname),
+			build: configBuild(),
 		}
 	}
 });

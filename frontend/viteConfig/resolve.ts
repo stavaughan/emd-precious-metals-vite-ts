@@ -3,7 +3,7 @@ import type { ResolveOptions, AliasOptions } from 'vite';
 
 type myResolveOptions = ResolveOptions & { alias?: AliasOptions };
 
-export function createViteResolve(myDirname: string): myResolveOptions {
+const configResolve = (myDirname: string): myResolveOptions => {
 	const pathResolve = (dir: string) => path.resolve(myDirname, '.', dir);
 	const viteResolve: myResolveOptions = {
 		alias: {
@@ -22,4 +22,6 @@ export function createViteResolve(myDirname: string): myResolveOptions {
 	};
 
 	return viteResolve;
-}
+};
+
+export default configResolve;

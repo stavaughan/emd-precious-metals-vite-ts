@@ -3,7 +3,7 @@ import configPwaPlugin from './pwa';
 import type { PluginOption } from 'vite';
 import type { Mode } from '../../vite.config';
 
-export function createVitePlugins(mode: Mode) {
+const configPlugins = (mode: Mode) => {
 	const vitePlugins: PluginOption[] = [];
 	vitePlugins.push(
 		react(),
@@ -11,4 +11,6 @@ export function createVitePlugins(mode: Mode) {
 	);
 
 	return vitePlugins;
-}
+};
+
+export default configPlugins;

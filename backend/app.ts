@@ -16,8 +16,6 @@ import metalsRouter from './routes/metalsRouter';
 import settingsRouter from './routes/settingsRouter';
 import messages from './utils/messages';
 
-// TODO: convert to SSR see: https://vitejs.dev/guide/ssr.html
-
 dotenv.config();
 
 connectDB();
