@@ -8,7 +8,6 @@ import type { PrintComponentProps } from './services.types';
 
 const PrintComponent = ({
 	componentRef,
-	setPrinting,
 	documentTitle,
 	disable,
 	margin = ''
@@ -33,7 +32,6 @@ const PrintComponent = ({
     }, [])
 
     const handleBeforeContent = () => {
-		!!setPrinting && setPrinting(true);
 		setLoading(true)
 	};
 
@@ -48,7 +46,6 @@ const PrintComponent = ({
         documentTitle,
         onBeforeGetContent: handleBeforeContent,
 		onAfterPrint: () => {
-			!!setPrinting && setPrinting(false);
 			beforePrintResolve.current = () => null;
 		},
         removeAfterPrint: true

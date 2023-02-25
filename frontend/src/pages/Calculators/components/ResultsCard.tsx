@@ -25,7 +25,7 @@ const ResultsCard: React.FC = () => {
 			<Card>
 				<CardTitleActionsHeader title="Metals Results Values" section>
 					<span className="d-print-none">
-						<ButtonRow btnItems={actionButtons} />
+						<ButtonRow btnItems={actionButtons} test />
 					</span>
 				</CardTitleActionsHeader>
 				<CardBody>

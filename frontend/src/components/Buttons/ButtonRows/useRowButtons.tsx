@@ -39,10 +39,9 @@ const useRowButtons = ({ btn, test, margin }: RowButtonProps) => {
 			noDisplay: !test,
 			Elem: () => (
 				<>
-					{btn?.printRef && btn?.setPrinting && (
+					{btn?.printRef && (
 						<PrintComponent
 							componentRef={btn?.printRef}
-							setPrinting={btn?.setPrinting}
 							documentTitle={`${btn.toolTip}_${dateStr}`}
 							margin={margin}
 						/>
