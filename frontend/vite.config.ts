@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv } from 'vite';
-import { createViteBuild } from './build/vite/build';
-import { createViteResolve } from './build/vite/resolve';
-import { createViteServer } from './build/vite/server';
-import { createVitePlugins } from './build/vite/plugins';
+import { createViteBuild } from './viteConfig/build';
+import { createViteResolve } from './viteConfig/resolve';
+import { createViteServer } from './viteConfig/server';
+import { createVitePlugins } from './viteConfig/plugins';
 
 export type Mode = 'development' | 'production';
 export type Command = 'serve' | 'build';
