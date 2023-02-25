@@ -13,7 +13,6 @@
     "server": "node dist/server.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "lint": "eslint backend/**/*.ts",
-    "prettier": "prettier --check \"backend/**/*.ts\"",
     "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build:prod",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build:prod --prefix frontend",
     "cancel": "heroku builds:cancel -a emd-precious-metals-vite-ts",
