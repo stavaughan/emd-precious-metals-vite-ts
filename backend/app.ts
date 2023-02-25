@@ -107,9 +107,14 @@ if (process.env.NODE_ENV === 'development') {
       maxAge: 31557600000,
     })
   );
-  app.get('/*', (_req, res: Response) =>
-    res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
-  );
+  app.get('/*', (_req, res: Response) => {
+    // eslint-disable-next-line no-console
+    console.log({
+      dirname: __dirname,
+      path: path.resolve(__dirname, '../frontend/dist/index.html'),
+    });
+    res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
+  });
 }
 
 app.use((_req, res: Response) => {
