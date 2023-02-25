@@ -5,15 +5,7 @@
 		"moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
-			"*": [
-				"node_modules/*"
-			],
-			"@*": [
-				"src/*"
-			],
-			"build*": [
-				"build/*"
-			]
+			"@*": ["src/*"]
 		},
 		"types": [
 			"vite/client",
@@ -41,9 +33,9 @@
 	},
 	"include": [
 		"vite.config.ts",
-		"build.config.ts",
 		"vitest.setup.ts",
-		"src"
+		"src",
+		"build"
 	],
 	"exclude": [
 		"node_modules",
