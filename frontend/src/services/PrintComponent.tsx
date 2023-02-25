@@ -1,7 +1,7 @@
 import { LoaderButton } from '@/components/Buttons';
 import { themeClasses } from '@/theme';
 import clsx from 'clsx';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { IReactToPrintProps } from "react-to-print";
 import { useReactToPrint } from "react-to-print";
 import type { PrintComponentProps } from './services.types';

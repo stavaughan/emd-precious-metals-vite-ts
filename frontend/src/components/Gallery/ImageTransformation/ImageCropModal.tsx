@@ -1,4 +1,3 @@
-import React from 'react'
 import { ModalWrapper } from '@/components/Modals'
 import { SiteData } from '@/data';
 import { ImageCrop } from '.'

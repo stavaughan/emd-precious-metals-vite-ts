@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Calculators, NotFound, Unauthorized } from '@/pages';
 import { SettingsContextProvider } from '@/contexts/settings-context';

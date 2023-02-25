@@ -1,21 +1,18 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"module": "ES2020",
-		"moduleResolution": "node",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"baseUrl": ".",
 		"paths": {
-			"@*": ["src/*"]
+			"@*": [
+				"src/*"
+			]
 		},
-		"types": [
-			"vite/client",
-			"jest",
-			"testing-library__jest-dom"
-		],
 		"resolveJsonModule": true,
-		"checkJs": true,
 		"noEmit": true,
-		"esModuleInterop": true,
+		"esModuleInterop": false,
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
@@ -29,16 +26,12 @@
 		],
 		"skipLibCheck": true,
 		"isolatedModules": true,
-		"jsx": "react"
+		"jsx": "react-jsx",
 	},
-	"include": [
-		"vite.config.ts",
-		"vitest.setup.ts",
-		"src",
-		"build"
-	],
-	"exclude": [
-		"node_modules",
-		"dist"
-	],
+	"include": ["src"],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	]
 }

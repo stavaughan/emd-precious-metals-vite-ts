@@ -1,4 +1,3 @@
-import React from 'react'
 import type { FootNoteProps } from './labels.types';
 import { Asterisk } from '.';
 

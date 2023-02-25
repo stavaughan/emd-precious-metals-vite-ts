@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { useScreenWidth, useFontSize } from '@/hooks';
 import type { ScreenSize } from '@/hooks/hooks.types';
 import type {

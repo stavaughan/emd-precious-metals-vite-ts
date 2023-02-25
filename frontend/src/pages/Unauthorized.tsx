@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppSelector } from "@/app/hooks";
 import { useNavigate } from 'react-router-dom';
 import { SvgIcons } from '@/components/SVGs';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageTitle, TitleIcon } from '.';
 import clsx from 'clsx';
 import { useMobile } from '@/hooks';

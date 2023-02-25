@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoadingSkeletonRow } from '.';
 
 const LoadingSkeleton = () => {

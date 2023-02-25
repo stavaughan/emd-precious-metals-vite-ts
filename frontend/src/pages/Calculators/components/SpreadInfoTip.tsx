@@ -1,4 +1,3 @@
-import React from 'react'
 import { Emphasize } from "@/components/Text";
 
 const Bold = Emphasize.Bold;
