@@ -11,6 +11,9 @@
 			"@*": [
 				"src/*"
 			],
+			"build*": [
+				"build/*"
+			]
 		},
 		"types": [
 			"vite/client",

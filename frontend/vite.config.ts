@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv } from 'vite';
-import { createViteBuild } from './build/vite/build';
-import { createViteResolve } from './build/vite/resolve';
-import { createViteServer } from './build/vite/server';
-import { createVitePlugins } from './build/vite/plugins';
+import { createViteBuild } from 'build/vite/build';
+import { createViteResolve } from 'build/vite/resolve';
+import { createViteServer } from 'build/vite/server';
+import { createVitePlugins } from 'build/vite/plugins';
 
 export default defineConfig(({ command, mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
