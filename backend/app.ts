@@ -112,13 +112,4 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-app.use((_req, res: Response) => {
-  res.status(404);
-  res.format({
-    html: () => res.type('html').send(messages.noAccess()),
-    json: () => res.json({ error: messages.notFoundJSON }),
-    default: () => res.type('txt').send(messages.notFoundText),
-  });
-});
-
 export { app };

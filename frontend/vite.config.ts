@@ -4,26 +4,28 @@ import { createViteResolve } from './build/vite/resolve';
 import { createViteServer } from './build/vite/server';
 import { createVitePlugins } from './build/vite/plugins';
 
-export default defineConfig(({ command, mode }) => {
-	const env = loadEnv(mode, process.cwd(), '');
+export type Mode = 'development' | 'production';
+export type Command = 'serve' | 'build';
+
+export default defineConfig(({
+	command,
+	mode
+}: {
+	command?: Command;
+	mode?: Mode | string;
+}) => {
+	const env = loadEnv(mode as Mode, process.cwd(), '');
+
+	const DOMAIN = mode === 'development'
+		? env.VITE_DOMAIN_DEV
+		: env.VITE_DOMAIN_PROD;
 
 	if (command === 'serve') {
 		return {
-			plugins: createVitePlugins(),
-			// server: createViteServer(),
-			server: {
-				host: true,
-				proxy: {
-					'/api': {
-						target: env.VITE_DOMAIN_DEV,
-					},
-				},
-			},
+			plugins: createVitePlugins(mode as Mode),
+			server: createViteServer(DOMAIN),
 			resolve: createViteResolve(__dirname),
 			build: createViteBuild(),
-			// build: {
-			// 	minify: false,
-			// },
 			test: {
 				globals: true,
 				environment: 'jsdom',
@@ -32,18 +34,8 @@ export default defineConfig(({ command, mode }) => {
 		}
 	} else {
 		return {
-			plugins: createVitePlugins(),
-			// server: {
-			// 	host: true,
-			// 	proxy: {
-			// 		'/api': {
-			// 			target: './api',
-			// 			changeOrigin: true,
-			// 			rewrite: (path) => path.replace(/^\/api/, ''),
-			// 		},
-			// 	},
-			// },
-			server: createViteServer(),
+			plugins: createVitePlugins(mode as Mode),
+			server: createViteServer(DOMAIN),
 			resolve: createViteResolve(__dirname),
 			build: createViteBuild(),
 		}

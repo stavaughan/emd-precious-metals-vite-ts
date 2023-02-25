@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"module": "ESNext",
+		"module": "ES2020",
 		"moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
@@ -27,7 +27,7 @@
 				"name": "typescript-plugin-css-modules"
 			}
 		],
-		"skipLibCheck": false,
+		"skipLibCheck": true,
 		"isolatedModules": true,
 		"jsx": "react"
 	},
