@@ -10,17 +10,17 @@ const TradeMark: React.FC<TrademarkProps> = ({
 	isLoading
 }) => {
 	const screen = useContext(SettingsContext).screen;
-	if (!isLoading && !name) return null;
 	return (
 		<>
-			{(isLoading || !name) ? (
-				<SkeletonElem
-					width={screen?.isSmall ? '80px' : '180px'}
-					height="25px"
-				/>
-			) : (
-				<TrademarkName name={name} mark={mark} />
-			)}
+			{name
+				? <TrademarkName name={name} mark={mark} />
+				: (
+					<SkeletonElem
+						enableAnimation={isLoading}
+						width={screen?.isSmall ? '120px' : '200px'}
+						height={screen?.isSmall ? '35px' : '45px'}
+					/>
+				)}
 		</>
 	);
 }

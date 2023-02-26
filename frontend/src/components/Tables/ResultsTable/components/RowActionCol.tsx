@@ -5,63 +5,52 @@ import { RowDelete, RowEditDelete } from '.';
 
 import { ResultsItem, Results, RowActionColProps } from '@/components/Tables/ResultsTable/Results.types';
 
-const RowActionCol: React.FC<RowActionColProps<any>> = ({
-	item,
-	image,
-	setResults,
-	setEditData,
-	editDone = false,
-	itemID,
-	setID,
-	onDelete,
-	loading,
-	deleteId
-}) => {
+const RowActionCol: React.FC<RowActionColProps<any>> = (props) => {
 
 	const [showEdit, setShowEdit] = useState(false);
 
 	useEffect(() => {
-		if (editDone) {
+		if (props?.editDone) {
 			setShowEdit(false)
 		}
-	}, [editDone])
+	}, [props?.editDone])
 
 	const { isXSmall } = useMobile();
 
 	const onRemoveImage = useCallback(() => {
-		if (setResults) {
-			setResults(prev => prev.map(file => file._id === itemID
+		if (props.setResults) {
+			props.setResults(prev => prev.map(file => file._id === props.itemID
 				? {
 					...file,
 					image: {}
 				} : file as ResultsItem<any>
 			) as Results<any>);
 		}
-	}, [itemID, setResults]);
+	}, [props.itemID, props.setResults]);
 
-	const deleteHandlerTest = !setEditData || (!!setID && !!setResults);
+	const deleteHandlerTest = !props.setEditData || (!!props.setID && !!props.setResults);
 
 	const onDeleteHandler = () => {
-		!!setID && setID(itemID as string)
-		!!onDelete && onDelete(itemID as string)
-		if (setResults) {
-			setResults(prev => prev.filter(_ => _?._id !== itemID));
+		!!props.setID && props.setID(props.itemID as string)
+		!!props.onDelete && props.onDelete(props.itemID as string)
+		if (props.setResults) {
+			props.setResults(prev => prev.filter(_ => _?._id !== props.itemID));
 		}
 	};
 
 	const onEditHandler = useCallback(() => {
 		if (!showEdit) {
 			setShowEdit(true);
-			if(item && !!setEditData) {
-				setEditData(item);
+			if(props.item && !!props.setEditData) {
+				props.setEditData(props.item);
 			}
 		} else {
 			setShowEdit(false);
-			if(setEditData) {
-				setEditData(null);
+			if(props.setEditData) {
+				props.setEditData(null);
 			}
 		}
-	}, [showEdit, setEditData, item]);
+	}, [showEdit, props.setEditData, props.item]);
 
 	return (
 		<td style={{ width: 'auto' }}>
@@ -69,12 +58,12 @@ const RowActionCol: React.FC<RowActionColProps<any>> = ({
 				'd-flex align-items-center d-print-none',
 				isXSmall ? 'flex-column' : 'justify-content-end pe-3'
 			)}>
-				{image?.isImage && (
+				{props.image?.isImage && (
 					<span
 						role="button"
 						className={clsx(
-							"link-hover ",
-							!isXSmall ? 'me-3 text-xs' : 'mb-3 text-xxs text-center'
+							"link-hover text-xxs",
+							!isXSmall ? 'me-3' : 'mb-3 text-center'
 						)}
 						onClick={onRemoveImage}
 					>
@@ -83,13 +72,13 @@ const RowActionCol: React.FC<RowActionColProps<any>> = ({
 				)}
 				{deleteHandlerTest && (
 					<RowDelete
-						loading={loading}
-						itemID={itemID as string}
-						deleteId={deleteId}
+						loading={props.loading}
+						itemID={props.itemID as string}
+						deleteId={props.deleteId}
 						handleDelete={onDeleteHandler}
 					/>
 				)}
-				{!!setEditData && (
+				{!!props.setEditData && (
 					<RowEditDelete
 						onSetEditID={onEditHandler}
 						handleDelete={onDeleteHandler}

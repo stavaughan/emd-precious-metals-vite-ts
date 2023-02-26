@@ -1,8 +1,8 @@
 import React from 'react';
-import { SkeletonElem } from '@/components/LoadingSkeleton';
 import { BrandLogo, TradeMark } from '.';
 import clsx from 'clsx';
-import type { BrandComponentProps } from '../Blocks.types';``
+import { SkeletonElem } from '@/components/LoadingSkeleton';
+import type { BrandComponentProps } from '../Blocks.types';
 import Classes from './BrandComponent.module.css';
 
 const BrandComponent: React.FC<BrandComponentProps> = ({
@@ -23,8 +23,14 @@ const BrandComponent: React.FC<BrandComponentProps> = ({
 			small && Classes['emd-brand--small']
 		)}>
 			<div className={Classes['emd-brand--logo']}>
-				{(isLoading || !name) ? (
-					<SkeletonElem width="55" height="80" />
+				{!name ? (
+					<SkeletonElem
+						enableAnimation={isLoading || false}
+						className="me-2"
+						width="60px"
+						height="60px"
+						circle
+					/>
 				) : (
 					<BrandLogo color={color} width="55" />
 				)}

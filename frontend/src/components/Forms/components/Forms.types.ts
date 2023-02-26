@@ -1,14 +1,3 @@
-export interface GroupDeleteProps {
-	label: string;
-	type?: string;
-	ActionLabel?: React.FC;
-	test?: boolean;
-	onDelete?: React.MouseEventHandler<HTMLButtonElement>;
-	labelClass?: string;
-	margin?: string;
-	sub?: boolean;
-}
-
 export type GroupInputRowProps = {
 	label: string;
 	subLabel?: string;

@@ -23,7 +23,7 @@ const MetalPricesRibbon: React.FC = () => {
 	return (
 		<div className={clsx(
 			isXSmall ? 'mb-3' : 'my-4',
-			"text-center bg-light rounded-3 py-4 text-muted"
+			"text-center bg-light rounded-3 py-4 text-secondary"
 		)}>
 			{metalPrices?.date ? <MetalPricesDate pricesDate={metalPrices.date} /> : null}
 			<div className={clsx(

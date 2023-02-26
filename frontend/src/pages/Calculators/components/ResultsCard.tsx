@@ -33,7 +33,8 @@ const ResultsCard: React.FC = () => {
 						<ResultsHeaderBar
 							quantity={storedValues.length}
 							headContent={metalPrices?.date && (
-								<div className="text-xs text-slate-500">
+								<div className="text-slate-700 text-xxs">
+									<span className="text-slate-500 pe-1">prices as of</span>
 									{Global._Date.formatted(metalPrices.date, 'full')}
 								</div>
 							)}

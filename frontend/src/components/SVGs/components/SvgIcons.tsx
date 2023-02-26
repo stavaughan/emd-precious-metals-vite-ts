@@ -968,7 +968,7 @@ const SvgIcons = {
 		return (
 			<SVGWrapper
 				width={width}
-				height={width}
+				height="auto"
 				viewBox="0 0 510 510"
 				aria-hidden="true"
 			>
@@ -998,7 +998,7 @@ const SvgIcons = {
 		return (
 			<SVGWrapper
 				width={width}
-				height={width}
+				height="auto"
 				viewBox="0 0 510 510"
 				aria-hidden="true"
 			>

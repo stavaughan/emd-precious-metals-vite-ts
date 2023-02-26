@@ -1,14 +1,16 @@
 import React from 'react'
 import { SvgIcons } from '@/components/SVGs'
-import type { BrandLogoProps } from '../Blocks.types'
+import type { BrandLogoProps } from '../Blocks.types';
 
-const BrandLogo: React.FC<BrandLogoProps> = ({ color, width = '55' }) => {
+const BrandLogo: React.FC<BrandLogoProps> = (props) => {
 
 	return (
 		<div>
-			{color
-				? <>{SvgIcons.ColorLogo({ width })}</>
-				: <>{SvgIcons.KnockoutLogo({ width })}</>}
+			{props.color ? (
+				<SvgIcons.ColorLogo width={props.width} />
+			) : (
+				<SvgIcons.KnockoutLogo width={props.width} />
+			)}
 		</div>
 	)
 }

@@ -116,7 +116,7 @@ By entering your expected spread, you can estimate what you can expect to receiv
 
 [sample price results in pdf](/frontend/src/globals/images/sample-metals-price-sheet.pdf)
 
-![Mobile 1](/frontend/src/globals/images/mobile-0.png "Mobile 1")
+![Mobile 1](/frontend/src/globals/images/mobile-01.png "Mobile 1")
 
 ![Mobile 2](/frontend/src/globals/images/mobile-1a.png "Mobile 2")
 
