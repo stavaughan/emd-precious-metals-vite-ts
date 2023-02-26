@@ -1,4 +1,4 @@
-import { SocialLinks, CopyRight } from '.';
+import { FooterContent } from '.';
 import ErrorBoundary from '@/state/ErrorBoundary';
 import React, { useContext } from 'react';
 import { SettingsContext } from '@/contexts';
@@ -15,15 +15,14 @@ const Footer: React.FC<SettingsData> = ({ settings }) => {
 		<footer className="gradient-indigo border-top d-print-none">
 			<div
 				className={clsx(
-					screen?.isXSmall ? 'py-3' : 'pt-4 pb-3',
+					screen?.isXSmall ? 'py-3' : 'pt-4',
 					'mx-auto overflow-hidden',
 					Classes['padding-x']
 				)}
 				style={{ maxWidth: '80rem' }}
 			>
 				<ErrorBoundary>
-					<SocialLinks settings={settings} />
-					<CopyRight settings={settings} />
+					<FooterContent settings={settings} />
 				</ErrorBoundary>
 			</div>
 		</footer>

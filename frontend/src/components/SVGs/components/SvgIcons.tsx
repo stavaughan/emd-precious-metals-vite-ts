@@ -52,7 +52,7 @@ const SvgIcons = {
 				y="0"
 				width="661.5"
 				height="395.4"
-				enable-background="new 0 0 661.5 395.4"
+				enableBackground="new 0 0 661.5 395.4"
 			>
 				<g>
 					<path
@@ -968,7 +968,7 @@ const SvgIcons = {
 		return (
 			<SVGWrapper
 				width={width}
-				height="auto"
+				height="100%"
 				viewBox="0 0 510 510"
 				aria-hidden="true"
 			>
@@ -998,7 +998,7 @@ const SvgIcons = {
 		return (
 			<SVGWrapper
 				width={width}
-				height="auto"
+				height="100%"
 				viewBox="0 0 510 510"
 				aria-hidden="true"
 			>

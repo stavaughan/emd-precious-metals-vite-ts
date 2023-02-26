@@ -32,6 +32,21 @@ type CopyRight = {
 	label?: string;
 }
 
+export type SiteInfo = {
+	name?: string;
+	siteName?: string;
+	description?: string;
+	businessName?: string;
+	streetAddress?: string;
+	city?: string;
+	state?: string;
+	zipCode?: string;
+	phone?: string;
+	email?: string;
+	website?: string;
+	date?: string;
+}
+
 export interface Settings {
 	_id: string;
 	siteName: string;
@@ -40,6 +55,7 @@ export interface Settings {
 	social: Social[] | [];
 	developer: Developer;
 	siteData?: object;
+	siteInfo?: SiteInfo;
 }
 
 export interface SettingsData {

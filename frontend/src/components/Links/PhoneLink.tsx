@@ -1,0 +1,34 @@
+import clsx from 'clsx';
+import { useMobile } from '@/hooks';
+
+const PhoneLink: React.FC<{
+	phone: string;
+	formatted: string;
+	extension?: string;
+	className?: string;
+}> = ({
+	phone,
+	formatted,
+	extension = '',
+	className = '',
+}) => {
+
+	const { isXSmall } = useMobile();
+
+	const label = formatted + extension ;
+
+    return phone ? (
+        <a
+            href={`tel:${phone}`}
+            className={clsx(
+				className,
+				isXSmall ? 'text-xxs' : 'text-xs',
+				'text-nowrap'
+			)}
+        >
+            {label}
+        </a>
+    ) : formatted;
+};
+
+export default PhoneLink;

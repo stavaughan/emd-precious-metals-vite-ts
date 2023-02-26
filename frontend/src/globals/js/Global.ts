@@ -32,7 +32,7 @@ const Global = {
 		prop: string,
 		nProp?: keyof typeof data[0][keyof typeof data[0]]
 	): number => {
-		if(!data?.length) return 0;
+		if (!data?.length) return 0;
 		return data
 			.map(_ => nProp
 				? _[prop as keyof typeof data[0]][nProp]
@@ -42,9 +42,9 @@ const Global = {
 
 	// will return a number from numbers pulled out of input text string (integers only)
 	numbersOnly: (value: number | string | '') => {
-		if(typeof value === 'number') return value;
+		if (typeof value === 'number') return value;
 		const numValue = value.trim();
-		if(!numValue) return;
+		if (!numValue) return;
 		const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 		const numericalCharacters = numValue.split('').filter(_ => nums.includes(_)).join('');
 		return Number(numericalCharacters)
@@ -52,7 +52,7 @@ const Global = {
 
 	// will return a string representing only numbers from the input parameter if all of the characters are numbers or return an empty string
 	allNumberCharacters: (value: string | number) => {
-		if(typeof value === 'number') return value;
+		if (typeof value === 'number') return value;
 		const textValue: string = value.trim();
 		const returnValue: string = (!isNaN(Number(textValue))) ? textValue : '';
 		return returnValue;
@@ -71,12 +71,12 @@ const Global = {
 	},
 
 	generateUUIDs: (count: number) => {
-		if(!count) return [];
+		if (!count) return [];
 		return Array(count).fill(Global.getObjectID());
 	},
 
 	removeDuplicates: (arr: string[]) => {
-		if(!arr?.length) return [];
+		if (!arr?.length) return [];
 		return arr.filter((item, idx) => arr.indexOf(item) === idx)
 	},
 
@@ -86,11 +86,34 @@ const Global = {
 	},
 
 	formatNumber: (value: number | string, decimals: number = 2) => {
-		if(!value) return;
+		if (!value) return;
 		const num = Number(value);
-		if(isNaN(num)) return;
+		if (isNaN(num)) return;
 		return num.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-	}
+	},
+
+	/**
+	 *
+	 * @param {*} phone can either be a number or string, formatted with dashes, dots or already formatted
+	 * @returns `(XXX) XXX-XXXX`
+	 */
+	formatPhone: (phone: string) => {
+		if (!phone) return '';
+		const phoneStr = phone.toString();
+		const format = (phoneStr: string, char?: number) => {
+			const prefix = `(${phoneStr.slice(0, 3)}) `;
+			const last7 = char
+				? `${phoneStr.slice(4, 7)}-${phoneStr.slice(8, 12)}`
+				: `${phoneStr.slice(3, 6)}-${phoneStr.slice(6, 10)}`;
+			return prefix + last7;
+		};
+		const charArray = phoneStr.split('');
+		const alreadyFormatted = charArray[0] === '(';
+		if (alreadyFormatted) return phoneStr;
+		return ['.', '-'].includes(charArray[3])
+			? format(phoneStr, 1)
+			: format(phoneStr);
+	},
 };
 
 export default Global;

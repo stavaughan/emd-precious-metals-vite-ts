@@ -1,4 +1,4 @@
-import type { SettingsData, MarkType } from '@/features/settings/settings.types';
+import type { Settings, MarkType } from '@/features/settings/settings.types';
 
 export type TitleBlockProps = {
 	title: string;
@@ -19,9 +19,10 @@ export interface BrandLogoProps {
 	width?: string;
 }
 
-export interface CenteredBrandProps extends SettingsData {
+export interface CenteredBrandProps {
 	isSmall?: boolean;
 	loading: boolean;
+	settings: Settings;
 }
 
 export interface BrandComponentProps extends TrademarkProps {

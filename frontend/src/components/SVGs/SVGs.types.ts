@@ -1,4 +1,4 @@
-type Dimensions = string | "100%" | "100vh" | "100vw" | "auto";
+type Dimensions = string;
 
 export interface SVGWrapperProps {
 	width?: Dimensions;
@@ -9,4 +9,6 @@ export interface SVGWrapperProps {
 	y?: string;
 	style?: React.CSSProperties;
 	children?: React.ReactNode;
+	enableBackground?: string;
+	'aria-hidden'?: string;
 }
