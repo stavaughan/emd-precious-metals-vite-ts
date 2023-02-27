@@ -15,7 +15,7 @@ const FooterLinks: React.FC<{
 			)}
             aria-label="footer"
         >
-            {SiteData.footerLinks.map((link, idx) => (
+            {SiteData.footerLinks.map((link, idx: number) => (
                 <FooterLink
                     key={link._id}
                     path={link.path}

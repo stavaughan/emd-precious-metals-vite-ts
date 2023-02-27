@@ -33,7 +33,7 @@ export type FooterLinkType = {
 	path: string;
 	label: string;
 	isSmall?: boolean;
-	idx: number;
+	idx?: number;
 };
 
 export type FooterLinksType = FooterLinkType[];
