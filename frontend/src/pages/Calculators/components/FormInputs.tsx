@@ -78,16 +78,18 @@ const FormInputs: React.FC = () => {
 					isRequired: true
 				}}
 			/>
-			<InputCol.Text
-				wrapProps={{ cols: '6 sm-4 md-3' }}
-				textInputProps={{
-					id: "inputmetalweight",
-					label: inputValues?.metal !== undefined ? `${Global.upperCaseFirst(inputValues.metal)} Weight (grams)` : 'Weight (grams)',
-					value: inputValues?.weightLabel || '',
-					onChange: onSetWeight,
-					required: true
-				}}
-			/>
+			{inputValues?.quality && (
+				<InputCol.Text
+					wrapProps={{ cols: '6 sm-4 md-3' }}
+					textInputProps={{
+						id: "inputmetalweight",
+						label: inputValues?.metal !== undefined ? `${Global.upperCaseFirst(inputValues.metal)} Weight (grams)` : 'Weight (grams)',
+						value: inputValues?.weightLabel || '',
+						onChange: onSetWeight,
+						required: true
+					}}
+				/>
+			)}
 		</GroupInputRow>
 	)
 }

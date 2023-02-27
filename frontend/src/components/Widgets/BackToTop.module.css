@@ -3,7 +3,7 @@
 }
 
 .scrolltop {
-    opacity: .3;
+    opacity: .4;
     animation: animation-scrolltop .4s ease-out 1;
     display: flex
 }
