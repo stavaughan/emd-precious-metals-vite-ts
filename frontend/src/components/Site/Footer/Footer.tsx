@@ -11,18 +11,20 @@ const Footer: React.FC<SettingsData> = ({ settings }) => {
 
 	const { screen } = useContext(SettingsContext);
 
+	const isSmall = screen?.isXSmall || screen?.isSmall;
+
 	return (
 		<footer className="gradient-indigo border-top d-print-none">
 			<div
 				className={clsx(
-					screen?.isXSmall ? 'py-3' : 'pt-4',
+					isSmall ? 'py-4' : 'pt-4',
 					'mx-auto overflow-hidden',
 					Classes['padding-x']
 				)}
 				style={{ maxWidth: '80rem' }}
 			>
 				<ErrorBoundary>
-					<FooterContent settings={settings} />
+					<FooterContent settings={settings} isSmall={isSmall} />
 				</ErrorBoundary>
 			</div>
 		</footer>

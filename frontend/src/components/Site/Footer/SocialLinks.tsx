@@ -1,7 +1,8 @@
 import React, { useMemo, useCallback } from 'react'
 import { controlProps } from '@/globals/js'
 import { SiteData } from '@/data';
-import type { SettingsData } from '@/features/settings/settings.types';
+import clsx from 'clsx';
+import type { Settings } from '@/features/settings/settings.types';
 import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
@@ -10,9 +11,9 @@ type SocialMediaSettings = {
 	url: string;
 	profileName: string;
 	accountLink: string;
-}
+};
 
-const SocialLinks: React.FC<SettingsData> = ({ settings }) => {
+const SocialLinks: React.FC<{ settings?: Settings; }> = ({ settings }) => {
 
 	const socialObj = useCallback((media: string) => {
 		const mediaObj = SiteData.socialMedia.find(_ => _.id === media);
@@ -42,7 +43,9 @@ const SocialLinks: React.FC<SettingsData> = ({ settings }) => {
 	}, []);
 
 	return (
-		<div className="d-flex justify-content-center gap-3 py-3">
+		<div className={clsx(
+			"d-flex justify-content-center gap-3"
+		)}>
 			{socialProfiles && socialProfiles?.length ? socialProfiles.map((media) => (
 					<a
 						key={media._id}

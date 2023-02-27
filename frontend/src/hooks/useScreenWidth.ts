@@ -13,7 +13,9 @@ const useScreenWidth = () => {
 		screenWidth: {}
 	})
 
-	const { windowSize }: { windowSize: Types.WindowSize; } = useWindowSize();
+	const { windowSize }: {
+		windowSize: Types.WindowSize;
+	} = useWindowSize();
 
 	const width = useMemo(() => {
 		const windowWidth = Number(windowSize.width);

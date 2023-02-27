@@ -1,29 +1,40 @@
-import React from 'react'
-import { useMobile } from '@/hooks';
+import React from 'react';
 import { CopyRight, FooterLinks, SocialLinks } from '.';
 import clsx from 'clsx';
-import type { SettingsData } from '@/features/settings/settings.types';
+import type { Settings } from '@/features/settings/settings.types';
 
-const FooterContent: React.FC<SettingsData> = ({
-	settings
-}) => {
+const FooterContent: React.FC<{
+	settings?: Settings;
+	isSmall?: boolean;
+}> = ({ settings, isSmall }) => {
 
-	const { isXSmall } = useMobile();
-
-
-    return (
-        <div className={clsx(
-			'd-flex align-items-center',
-			isXSmall
+	return (
+		<div className={clsx(
+			'd-flex align-items-center gap-2',
+			isSmall
 				? 'flex-column'
-				: 'justify-content-between',
+				: 'justify-content-between mb-3',
 		)}>
-			{!isXSmall && <CopyRight settings={settings} />}
-			<SocialLinks settings={settings} />
-			<FooterLinks />
-			{isXSmall && <CopyRight settings={settings} />}
-        </div>
-    )
+			{!isSmall && (
+				<>
+					<CopyRight
+						settings={settings}
+						isSmall={isSmall}
+					/>
+					<SocialLinks settings={settings} />
+					<FooterLinks isSmall={isSmall} />
+				</>
+			)}
+
+			{isSmall && (
+				<>
+					<SocialLinks settings={settings} />
+					<FooterLinks isSmall={isSmall} />
+					<CopyRight settings={settings} isSmall={isSmall} />
+				</>
+			)}
+		</div>
+	)
 }
 
 export default FooterContent

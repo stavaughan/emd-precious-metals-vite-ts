@@ -9,6 +9,8 @@ const Navigation: React.FC<{
 
 	const { isXSmall } = useMobile();
 
+	const linkClass = clsx('nav-link', isXSmall ? 'text-xs' : 'text-sm');
+
 	return (
 		<Col cols="12 md-3 lg-2">
 			<div className={clsx(
@@ -23,19 +25,19 @@ const Navigation: React.FC<{
 					<nav className="nav nav-pills flex-column">
 						<Link
 							to="/legal/terms-of-use"
-							className={clsx('nav-link', activePage === 'terms' && ' active')}
+							className={clsx(linkClass, activePage === 'terms' && ' active')}
 						>
 							Terms of Use
 						</Link>
 						<Link
 							to="/legal/privacy-policy"
-							className={clsx('nav-link', activePage === 'privacy' && ' active')}
+							className={clsx(linkClass, activePage === 'privacy' && ' active')}
 						>
 							Privacy Policy
 						</Link>
 						<Link
 							to="/"
-							className="nav-link"
+							className={linkClass}
 						>
 							Home
 						</Link>

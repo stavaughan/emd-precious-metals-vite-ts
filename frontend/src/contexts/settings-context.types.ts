@@ -7,7 +7,7 @@ export type FontSizeProps = {
 }
 
 export type SettingsContextType = {
-	screen?: ScreenSize | null;
+	screen: ScreenSize | null;
 	fontSize?: FontSizeProps | null;
 };
 
