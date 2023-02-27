@@ -3,10 +3,13 @@ import { MetalsContext } from '@/contexts';
 import type { InputValues, MetalsContextType } from '@/contexts/metals-context.types';
 import { Global } from '@/globals/js';
 import { preciousMetals } from '@/globals/js/lib';
+import { useMobile } from '@/hooks';
 import type { MetalQuality } from '@contexts/metals-context.types';
 import React, { useCallback, useContext, useMemo } from 'react';
 
 const FormInputs: React.FC = () => {
+
+	const { isXSmall } = useMobile();
 
 	const {
 		inputValues,
@@ -78,7 +81,7 @@ const FormInputs: React.FC = () => {
 					isRequired: true
 				}}
 			/>
-			{inputValues?.quality && (
+			{(isXSmall && !!inputValues?.quality) || !isXSmall ? (
 				<InputCol.Text
 					wrapProps={{ cols: '6 sm-4 md-3' }}
 					textInputProps={{
@@ -86,10 +89,11 @@ const FormInputs: React.FC = () => {
 						label: inputValues?.metal !== undefined ? `${Global.upperCaseFirst(inputValues.metal)} Weight (grams)` : 'Weight (grams)',
 						value: inputValues?.weightLabel || '',
 						onChange: onSetWeight,
-						required: true
+						required: true,
+						disabled: !inputValues?.quality
 					}}
 				/>
-			)}
+			) : null}
 		</GroupInputRow>
 	)
 }

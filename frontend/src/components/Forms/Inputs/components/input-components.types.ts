@@ -89,6 +89,7 @@ export interface InputTextProps {
 	helperMsg?: string;
 	maxLength?: number;
 	value?: string;
+	disabled?: boolean;
 }
 
 export interface InputComponentProps extends InputWrapperProps, InputLabelProps {
