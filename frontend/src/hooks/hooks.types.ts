@@ -26,12 +26,13 @@ export type ScreenWidth = {
 }
 
 export type ScreenSize = {
+	isMobile: boolean;
 	isXSmall: boolean;
 	isSmall: boolean;
 	isMedium: boolean;
 	isLarge: boolean;
 	isXLarge: boolean;
-	screenWidth: ScreenWidth;
+	isXXLarge: boolean;
 }
 
 export interface WindowSize {

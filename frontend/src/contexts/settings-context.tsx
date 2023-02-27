@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { useScreenWidth, useFontSize } from '@/hooks';
+import { useFontSize, useScreenWidth } from '@/hooks';
 import type { ScreenSize } from '@/hooks/hooks.types';
 import type {
 	FontSizeProps,
@@ -8,7 +8,15 @@ import type {
 } from '@contexts/settings-context.types';
 
 const SettingsContext = createContext<SettingsContextType>({
-	screen: null,
+	screen: {
+		isMobile: false,
+		isXSmall: false,
+		isSmall: false,
+		isMedium: false,
+		isLarge: false,
+		isXLarge: false,
+		isXXLarge: false
+	},
 	fontSize: null
 });
 

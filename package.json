@@ -3,6 +3,18 @@
   "version": "1.0.0",
   "description": "Gold, platinum and silver scrap calculator based on current spot prices with React frontend and NodeJS server",
   "private": true,
+  "keywords": [
+    "pwa",
+    "template",
+    "react",
+    "redux",
+    "redux-toolkit",
+    "bootstrap",
+    "heroku",
+    "vite",
+    "express",
+    "api"
+  ],
   "scripts": {
     "build:prod": "webpack --config ./webpack.config.js --mode='production'",
     "build:dev": "webpack",

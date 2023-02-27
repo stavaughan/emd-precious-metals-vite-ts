@@ -134,13 +134,13 @@ By entering your expected spread, you can estimate what you can expect to receiv
 ### Clone the GitHub repository
 
 ```bash
-$git clone git@github.com:stavaughan/emd-precious-metals-vite.git
+$git clone git@github.com:stavaughan/emd-precious-metals-vite-ts.git
 ```
 
-### CD to emd-precious-metals-vite
+### CD to root directory
 
 ```bash
-$cd emd-precious-metals-vite
+$cd emd-precious-metals-vite-ts
 ```
 
 ### Install dependencies backend
@@ -158,13 +158,13 @@ $cd frontend && npm install
 ### Start the development server
 
 ```bash
-$cd.. && npm run dev
+$cd.. && npm start
 ```
 
 ### Build the application
 
 ```bash
-$cd frontend && npm run build
+$cd frontend && npm run build:dev
 ```
 
 Once the frontend static file has been compiled you can deploy your app on your favorite server. Follow their instructions as they may differ from the previous step:

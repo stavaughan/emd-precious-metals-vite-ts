@@ -6,6 +6,7 @@ import {
 	TermsOfService,
 	PrivacyPolicy,
 } from '@/pages';
+
 import { SettingsContextProvider } from '@/contexts/settings-context';
 import { useLoadSettings } from '@/hooks';
 import { faIconList } from '@/theme';

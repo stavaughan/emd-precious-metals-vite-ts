@@ -19,22 +19,65 @@ screen and (min-resolution: 2dppx) {
 
 .content {
 	flex: 1 0 auto;
-	min-height: calc(100vh - 8vh);
 }
 
 footer {
 	position: relative;
 	bottom: 0;
 	width: 100%;
-	height: 8vh;
 }
 
-@media screen and (max-width: 576px) {
+@media only screen and (max-width: 575.99px) {
+	.content {
+		min-height: calc(100vh - 16vh);
+	}
+	footer {
+		height: 17vh;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.content {
+		min-height: calc(100vh - 16vh);
+	}
+	footer {
+		height: 16vh;
+	}
+}
+
+@media only screen and (min-width: 768px) {
 	.content {
 		min-height: calc(100vh - 15vh);
 	}
 	footer {
-		height: 17vh;
+		height: 15vh;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.content {
+		min-height: calc(100vh - 10vh);
+	}
+	footer {
+		height: 10vh;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.content {
+		min-height: calc(100vh - 9vh);
+	}
+	footer {
+		height: 9vh;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	.content {
+		min-height: calc(100vh - 8vh);
+	}
+	footer {
+		height: 8vh;
 	}
 }
 
@@ -136,7 +179,6 @@ svg {
 }
 
 @media screen and (max-width: 576px) {
-
 	.breadcrumb-item>a,
 	.breadcrumb-item>span {
 		font-size: 0.675rem;
