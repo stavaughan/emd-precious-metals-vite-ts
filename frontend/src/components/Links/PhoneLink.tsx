@@ -17,7 +17,11 @@ const PhoneLink: React.FC<{
 
 	const label = formatted + extension ;
 
-    return phone ? (
+	if(!phone) {
+		return <>{formatted}</>;
+	}
+
+    return (
         <a
             href={`tel:${phone}`}
             className={clsx(
@@ -28,7 +32,7 @@ const PhoneLink: React.FC<{
         >
             {label}
         </a>
-    ) : formatted;
+    );
 };
 
 export default PhoneLink;

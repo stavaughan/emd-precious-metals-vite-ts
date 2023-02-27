@@ -97,7 +97,7 @@ const Global = {
 	 * @param {*} phone can either be a number or string, formatted with dashes, dots or already formatted
 	 * @returns `(XXX) XXX-XXXX`
 	 */
-	formatPhone: (phone: string) => {
+	formatPhone: (phone: string): string => {
 		if (!phone) return '';
 		const phoneStr = phone.toString();
 		const format = (phoneStr: string, char?: number) => {

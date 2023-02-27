@@ -10,5 +10,5 @@ export interface SVGWrapperProps {
 	style?: React.CSSProperties;
 	children?: React.ReactNode;
 	enableBackground?: string;
-	'aria-hidden'?: string;
+	'aria-hidden'?: 'true' | 'false';
 }
