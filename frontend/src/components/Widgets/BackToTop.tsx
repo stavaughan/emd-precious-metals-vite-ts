@@ -16,9 +16,8 @@ const BackToTop = () => {
     }, [onScroll]);
 
     const scrollToTop = () => {
-        if (visible) {
-			window.scrollTo({ top: 0 })
-		};
+		if(!visible) return;
+		window.scrollTo({ top: 0 })
     }
 
     return (
