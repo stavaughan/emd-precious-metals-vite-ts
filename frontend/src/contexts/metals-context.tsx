@@ -14,6 +14,7 @@ import type {
 	MetalType,
 	MetalValues,
 	Spread,
+	Update,
 	StoredContentTuple,
 	StoredMetalValues
 } from "./metals-context.types";
@@ -34,6 +35,7 @@ const MetalsContext = createContext({
 	clearResult: () => { null },
 	calculateResult: () => { null },
 	setSpread: () => { null },
+	setUpdate: () => { null },
 	spread: 0,
 } as unknown as MetalsContextType);
 
@@ -43,6 +45,11 @@ export const MetalsProvider: React.FC<{
 
 	const printRef = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
 	const storageType = 'local' as StorageType;
+
+	const [update, setUpdate] = useState({
+		price: false,
+		spread: false
+	} as Update);
 
 	const [spread, setSpread] = useSetStorage({
 		storageKey: 'metalSpread',
@@ -145,45 +152,78 @@ export const MetalsProvider: React.FC<{
 	const calculateResult = useCallback(() => {
 		const weight = inputValues?.weight ? inputValues?.weight : 0;
 		const metal = inputValues?.metal || 'gold';
-		const metalTitle = inputValues?.metal ? Global.upperCaseFirst(inputValues?.metal) : '';
 		const metalPrice = storedPrices?.[metal as keyof typeof storedPrices] || 0;
 		const qualityID = inputValues?.quality || '';
-		const qualityDisplay = inputValues?.qualityDisplay || '';
-		const displayWeight = Global.formatNumber(weight / 1000);
 		const result = metalValue({
 			metalPrice,
 			metal,
 			weight,
 			qualityID
 		});
-		const formAmount = amountUSD({ num: result, dec: 2 });
-		const dataID = Global.objectIDsGenerator(1)[0];
-		const content = [
-			metalTitle,
-			qualityDisplay,
-			displayWeight,
-			formAmount
-		] as StoredContentTuple
 
-		// TODO: add update feature when user re-fetches prices
-		// TODO: add date to stored values as well as metal price the create useEffect that evaluates metal price against stored prices and updates stored values if they are different
 		setStoredValues((prev) => [
 			...prev,
 			{
-				_id: dataID,
+				_id: Global.objectIDsGenerator(1)[0],
+				metal,
 				image: null,
-				metal: metalTitle,
-				quality: qualityDisplay,
 				qualityID,
 				metalID: metal,
-				amount: formAmount,
 				result,
 				weight: weight / 1000,
-				content
+				content: [
+					// Name of Metal
+					Global.upperCaseFirst(metal),
+					// Quality of Metal
+					inputValues?.qualityDisplay || '',
+					// Weight of Metal
+					Global.formatNumber(weight / 1000),
+					// Value of Metal in USD
+					amountUSD({ num: result, dec: 2 })
+				] as StoredContentTuple
 			}
 		] as StoredMetalValues);
 		clearResult()
 	}, [inputValues, metalValue, clearResult, setStoredValues, storedPrices]);
+
+	const updateStoredValues = useCallback(() => {
+		if(!storedValues?.length) return;
+		const updatedValues = (prev: StoredMetalValues) => prev.map((value ) => {
+			const metalPrice = storedPrices?.[value?.metalID as keyof typeof storedPrices];
+			const weight = value.weight as number * 1000;
+			const result = metalValue({
+				metalPrice,
+				metal: value.metal,
+				weight,
+				qualityID: value.qualityID
+			} as MetalValues);
+			return {
+				...value,
+				result,
+				content: [
+					value.content[0],
+					value.content[1],
+					value.content[2],
+					amountUSD({ num: result, dec: 2 })
+				] as StoredContentTuple
+			}
+		}) as StoredMetalValues;
+		setStoredValues(updatedValues)
+	}, [storedValues, setStoredValues, storedPrices, metalValue]);
+
+	useEffect(() => {
+		if(update.price) {
+			updateStoredValues()
+			setUpdate(prev => ({ ...prev, price: false }))
+		}
+	}, [update.price]);
+
+	useEffect(() => {
+		if(update.spread) {
+			updateStoredValues()
+			setUpdate(prev => ({ ...prev, spread: false }))
+		}
+	}, [update.spread]);
 
 	const pageContent = useMemo(() => {
 		const metalIDs = storedValues.map(_ => _.metalID) as string[];
@@ -193,11 +233,11 @@ export const MetalsProvider: React.FC<{
 		const sameMetalAndQuality = sameMetalIDs && sameQualityIDs;
 		const totalWeight = Global.propTotal(storedValues, 'weight') as number;
 		const displayWeight = Global.formatNumber(totalWeight);
-		const resuleValue = Global.propTotal(storedValues, 'result') as number;
-		const displayValue = amountUSD({ num: resuleValue, dec: 2 }) as string;
-
-		// TODO: Refactor to break down weight totals by metal and quality
-		const jsxWeight = sameMetalAndQuality ? <span className="fw-bolder text-dark">{displayWeight}</span> as JSX.Element : <span className="fw-bolder text-dark">N/A</span> as JSX.Element;
+		const resultValue = Global.propTotal(storedValues, 'result') as number;
+		const displayValue = amountUSD({ num: resultValue, dec: 2 }) as string;
+		const jsxWeight = sameMetalAndQuality
+			? <span className="fw-bolder text-dark">{displayWeight}</span> as JSX.Element
+			: <span className="fw-bolder text-dark">N/A</span> as JSX.Element;
 		const jsxValue = <span className="fw-bolder text-dark">{displayValue}</span> as JSX.Element;
 		return {
 			head: [
@@ -244,6 +284,7 @@ export const MetalsProvider: React.FC<{
 			date: newDate.toUTCString() as string
 		} as MetalPrices;
 		setStoredPrices(updatedPrices);
+		setUpdate(prev => ({ ...prev, price: true }))
 	}, [setStoredPrices]);
 
 	const hasPrices = useMemo(() => {
@@ -331,6 +372,7 @@ export const MetalsProvider: React.FC<{
 				clearResult,
 				calculateResult,
 				setSpread,
+				setUpdate,
 				spread
 			}}
 		>

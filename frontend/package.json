@@ -9,7 +9,7 @@
 		"build:dev": "tsc && vite build --watch",
 		"build:prod": "tsc && vite build",
 		"debug": "node --inspect-brk vite",
-		"serve": "vite preview",
+		"serve": "vite preview --port 8080",
 		"test": "vitest"
 	},
 	"eslintConfig": {

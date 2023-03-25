@@ -79,6 +79,13 @@ export type MetalPageContent = {
 	footer: FooterTuple;
 }
 
+export type Update = {
+	price: boolean;
+	spread: boolean;
+}
+
+export type SetUpdate = Dispatch<SetStateAction<Update>>;
+
 type DDOption = {
 	_id?: string;
 	label?: string;
@@ -107,5 +114,6 @@ export type MetalsContextType = {
 	clearResult?: () => void;
 	calculateResult?: () => void;
 	setSpread: Dispatch<SetStateAction<Spread>>;
+	setUpdate: SetUpdate;
 	spread: Spread | 0;
 };

@@ -22,6 +22,7 @@ const FetchPricesButton: React.FC = () => {
 	const {
 		currentMetalPrices,
 		setSpread,
+		setUpdate,
 		spread
 	} = useContext(MetalsContext) as MetalsContextType;
 
@@ -71,6 +72,7 @@ const FetchPricesButton: React.FC = () => {
 		setSyntheticLoading(true);
 		const qty = value ? Math.abs(value) : 0;
 		setSpread(qty);
+		setUpdate(prev => ({ ...prev, spread: true }))
 	};
 
 	return (

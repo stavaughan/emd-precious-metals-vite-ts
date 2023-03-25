@@ -18,7 +18,7 @@
   "scripts": {
     "build:prod": "webpack --config ./webpack.config.js --mode='production'",
     "build:dev": "webpack",
-    "test": "jest --detectOpenHandles --watchAll",
+    "test": "jest --watch",
     "client": "npm start --prefix frontend",
     "start:dev": "webpack && node dist/server.js",
     "server": "node dist/server.js",

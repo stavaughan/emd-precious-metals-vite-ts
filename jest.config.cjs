@@ -4,7 +4,6 @@ module.exports = {
     '^.+\\.(t|j)sx?$': '@swc/jest',
   },
   moduleNameMapper: {
-    // Handle module aliases (this will be automatically configured for you soon)
     '^@/(.*)$': '<rootDir>/backend/$1',
     '^__mocks__/(.*)$': '<rootDir>/__mocks__/$1',
   },
@@ -15,6 +14,7 @@ module.exports = {
     '!backend/handler.ts',
     '!backend/**/*.d.ts',
     '!**/node_modules/**',
+    '!**/vendor/**',
   ],
   coverageThreshold: {
     global: {

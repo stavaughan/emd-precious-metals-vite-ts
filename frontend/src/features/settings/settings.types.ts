@@ -54,7 +54,6 @@ export interface Settings {
 	siteBranding: SiteBranding;
 	social: Social[] | [];
 	developer: Developer;
-	siteData?: object;
 	siteInfo?: SiteInfo;
 }
 
