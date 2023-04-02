@@ -1,78 +1,55 @@
 import React from 'react';
-import { DropdownWrapper } from '.';
-import type { DropdownSelectProps, OnSelectType } from './input-components.types';
+import type { SelectHTMLAttributes } from 'react';
+import { DropdownWrapper, DDSelectOptions } from '.';
+import type { DropdownSelectProps, OnSelectType, InputLabelProps } from './input-components.types';
 import clsx from 'clsx';
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({
-	onChange,
-	onBlur,
-	multiple,
-	options,
-	label,
-	selected,
-	flush,
 	isRequired,
-	id,
-	//upperCase,
-	small,
-	smallLabel,
-	selectLabel,
-	//componentLabel,
-	selectClass,
+	onChange,
 	...props
 }) => {
 
 	const onChangeHandler = (e: OnSelectType) => {
 		e.preventDefault();
 		const value = e.target.value;
-		const defaultValue = `- ${selectLabel || 'SELECT'} -`;
+		const defaultValue = `- ${props?.selectLabel || 'SELECT'} -`;
 		if (onChange && value !== defaultValue) {
 			onChange(value);
 		}
 	};
 
+	const wrapperProps = {
+		id: props?.id,
+		label: props?.label,
+		...isRequired ? { isRequired } : {},
+		...props?.smallLabel ? { smallLabel: props?.smallLabel } : {},
+		...props
+	} as InputLabelProps;
+
+	const selectProps = {
+		id: props?.id,
+		className: clsx(
+			'form-control form-select',
+			props?.flush && 'form-control-flush',
+			props?.small && 'form-select-sm',
+			props?.selectClass
+		),
+		"aria-label": props?.label,
+		onChange: onChangeHandler,
+		onBlur: props?.onBlur,
+		value: props?.selected || '',
+		multiple: props?.multiple,
+		...props
+	} as SelectHTMLAttributes<HTMLSelectElement>;
+
 	return (
-		<DropdownWrapper
-			label={label}
-			isRequired={isRequired}
-			smallLabel={smallLabel}
-			id={id}
-			{...props}
-		>
-			<select
-				id={id}
-				className={clsx(
-					'form-control form-select',
-					flush && 'form-control-flush',
-					small && 'form-select-sm',
-					selectClass
-				)}
-				aria-label={label}
-				onChange={onChangeHandler}
-				onBlur={onBlur}
-				value={selected || ''}
-				multiple={multiple}
-				{...props}
-			>
-				<option
-					key="default"
-					defaultValue="default"
-					className="text-slate-300"
-				>
-					{`- ${selectLabel || 'SELECT'} -`}
-				</option>
-				{options?.length ? options.map((option, idx) => {
-					const optionID = option?._id || option?.id;
-					return (
-						<option
-							className="text-dark"
-							key={optionID || idx}
-							value={optionID}
-						>
-							{option.label}
-						</option>
-					)
-				}) : null}
+		<DropdownWrapper {...wrapperProps}>
+			<select {...selectProps}>
+				<DDSelectOptions
+					options={props?.options}
+					selectLabel={props?.selectLabel}
+				/>
 			</select>
 		</DropdownWrapper>
 	);

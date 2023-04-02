@@ -9,3 +9,4 @@ export { default as QuantitySelector } from './QuantitySelector';
 export { default as InputComponent } from './InputComponent';
 export { default as DropdownSelect } from './DropdownSelect';
 export { default as SuperTextNotice } from './SuperTextNotice';
+export { default as DDSelectOptions } from './DDSelectOptions';

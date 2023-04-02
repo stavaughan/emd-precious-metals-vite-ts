@@ -3,27 +3,41 @@ import { Header, Footer } from '@/components/Site';
 import { PageHeader } from '@/components/Page';
 import type { Settings } from '@/features/settings/settings.types';
 
-type Props = {
-	settings: Settings
-	isLoading: boolean
-	children: React.ReactNode
+type Content = {
+	header?: boolean;
+	footer?: boolean;
+	pageHeader?: boolean;
 }
 
-const Layout: React.FC<Props> = ({ settings, isLoading, children }) => {
+type Props = {
+	settings: Settings;
+	isLoading: boolean;
+	content?: Content;
+	children: React.ReactNode;
+}
+
+const Layout: React.FC<Props> = ({
+	settings,
+	isLoading,
+	content = {},
+	children,
+}) => {
 
 	return (
 		<>
 			<div className="content">
-				<Header
+				{content?.header && <Header
 					settings={settings}
 					isLoading={isLoading}
-				/>
+				/>}
 				<main>
-					<PageHeader />
+					{content?.pageHeader && <PageHeader />}
 					{children}
 				</main>
 			</div>
-			<Footer settings={settings} />
+			{content?.footer && (
+				<Footer settings={settings} />
+			)}
 		</>
 	);
 };

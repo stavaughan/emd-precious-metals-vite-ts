@@ -16,6 +16,7 @@ const SVGWrapper: React.FC<SVGWrapperProps> = ({
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
+			version="1.1"
 			viewBox={viewBox || `0 0 ${width || "24"} ${viewBoxHeight || "24"}`}
 			width={width || "24"}
 			height={height || "24"}

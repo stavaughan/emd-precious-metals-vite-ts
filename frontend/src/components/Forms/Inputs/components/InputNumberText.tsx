@@ -8,14 +8,10 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 	setAmount,
 	setEntering,
 	placeholder = "00.00",
-	required,
-	optional,
-	onBlur,
-	label,
 	...props
 }) => {
 
-	const [numberValue, setNumberValue] = useState('');
+	const [numberValue, setNumberValue] = useState('0');
 
 	useEffect(() => {
 		if (amount === 0 || !amount) {
@@ -24,7 +20,7 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 	}, [amount]);
 
 	const handleValueChange = (value: string | '') => {
-		const textValue: string = value.trim();
+		const textValue: string = value ? value.trim() : '';
 		const numValue = Global.allNumberCharacters(textValue);
 		!!setAmount && setAmount(textValue ? Number(numValue) : 0);
 		setNumberValue(textValue ? numValue.toString() : '');
@@ -36,11 +32,8 @@ const InputNumberText: React.FC<InputNumberTextProps> = ({
 			value={numberValue}
 			onChange={handleValueChange}
 			placeholder={placeholder}
-			required={required}
-			optional={optional}
-			label={label}
-			onBlur={onBlur}
-			{...props}		/>
+			{...props}
+		/>
 	)
 }
 

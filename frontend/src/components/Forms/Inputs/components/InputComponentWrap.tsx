@@ -4,7 +4,7 @@ import type { InputLabelProps, InputWrapperProps } from './input-components.type
 
 const InputComponentWrap: React.FC<InputWrapperProps & InputLabelProps & {
 	children: React.ReactNode
-}> = ({ children, ...props}) => {
+}> = (props) => {
 
 	const labelProps: InputLabelProps = {
 		...props?.labelClass && { labelClass: props.labelClass },
@@ -29,7 +29,7 @@ const InputComponentWrap: React.FC<InputWrapperProps & InputLabelProps & {
 	return (
 		<InputWrapper {...wrapperProps}>
 			{(!props?.floating && !!props?.label) && <InputLabel {...labelProps} />}
-            {children}
+            {props.children}
 			{(props?.floating && !!props?.label) && <InputLabel {...labelProps} />}
 		</InputWrapper>
 	)

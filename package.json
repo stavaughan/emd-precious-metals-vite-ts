@@ -9,6 +9,8 @@
     "react",
     "redux",
     "redux-toolkit",
+    "typescript",
+    "webpack",
     "bootstrap",
     "heroku",
     "vite",

@@ -9,30 +9,28 @@ const configPwaPlugin = (mode: Mode) => {
 		mode,
 		base: '/',
 		includeAssets: [
-			'favicon.svg',
-			'favicon.ico',
+			'logo.svg',
 			'robots.txt',
-			'apple-touch-icon.png'
 		],
 		manifest: {
-			name: 'Meristak Apps',
-			short_name: 'Meristak',
-			description: 'Scrap Precious Metals Calculator',
+			name: 'GoldCalc',
+			short_name: 'GoldCalc',
+			description: 'Precious Metals Calculator',
 			theme_color: '#720000',
 			background_color: '#fff',
 			icons: [
 				{
-					src: '/pwa/logo192.svg',
+					src: 'favicon.svg',
 					sizes: '192x192',
-					type: 'image/png',
+					type: 'image/svg+xml',
 				},
 				{
-					src: "/pwa/logo512.svg",
+					src: "favicon.svg",
 					sizes: "512x512",
 					type: "image/svg+xml",
 				},
 				{
-					src: "/pwa/logo512.svg",
+					src: "favicon.svg",
 					sizes: "512x512",
 					type: "image/svg+xml",
 					purpose: 'any maskable',

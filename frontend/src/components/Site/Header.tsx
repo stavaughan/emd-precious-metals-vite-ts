@@ -5,7 +5,10 @@ import { SettingsContext } from '@/contexts';
 import clsx from 'clsx';
 import type { HeaderProps } from './Site.types';
 
-const Header: React.FC<HeaderProps> = ({ settings, isLoading }) => {
+const Header: React.FC<HeaderProps> = ({
+	settings,
+	isLoading
+}) => {
 
 	const { screen } = useContext(SettingsContext);
 

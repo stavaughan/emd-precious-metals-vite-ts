@@ -7,37 +7,28 @@ import configPlugins from './viteConfig/plugins';
 export type Mode = 'development' | 'production';
 export type Command = 'serve' | 'build';
 
-export default defineConfig(({
-	command,
-	mode
-}: {
+export default defineConfig(({ command, mode }: {
 	command?: Command;
-	mode?: Mode | string;
+	mode: Mode | string;
 }) => {
 	const env = loadEnv(mode as Mode, process.cwd(), '');
-
 	const DOMAIN = mode === 'development'
 		? env.VITE_DOMAIN_DEV
 		: env.VITE_DOMAIN_PROD;
 
-	if (command === 'serve') {
-		return {
-			plugins: configPlugins(mode as Mode),
-			server: configServer(DOMAIN),
-			resolve: configResolve(__dirname),
-			build: configBuild(),
-			test: {
-				globals: true,
-				environment: 'jsdom',
-				setupFiles: './vitest.setup.ts'
-			}
+	const configuration = {
+		plugins: configPlugins(mode as Mode),
+		server: configServer(DOMAIN),
+		resolve: configResolve(__dirname),
+		build: configBuild(),
+	};
+
+	return command === 'serve' ? {
+		...configuration,
+		test: {
+			globals: true,
+			environment: 'jsdom',
+			setupFiles: './vitest.setup.js'
 		}
-	} else {
-		return {
-			plugins: configPlugins(mode as Mode),
-			server: configServer(DOMAIN),
-			resolve: configResolve(__dirname),
-			build: configBuild(),
-		}
-	}
+	} : configuration;
 });

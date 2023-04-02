@@ -17,6 +17,7 @@ export type HandleBlurSelectType = React.FocusEventHandler<HTMLSelectElement>;
 // When defining the event directly
 export type OnSelectType = React.ChangeEvent<HTMLSelectElement>;
 export type OnChangeType = React.ChangeEvent<HTMLInputElement>;
+export type OnChangeEventType = React.ChangeEvent<HTMLInputElement>;
 export type OnBlurType = React.FocusEvent<HTMLInputElement, Element>;
 
 export interface InputLabelProps {
@@ -33,24 +34,29 @@ interface ISelectHandler {
 	onBlur?: HandleBlurSelectType;
 }
 
-type IOption = {
+export type IOption = {
 	_id?: string;
 	id?: string;
 	label?: string;
 	ext?: string;
 };
 
-export interface DropdownSelectProps extends ISelectHandler, InputLabelProps {
-	multiple?: boolean;
+export type DDSelectOptionsProps = {
 	options?: IOption[];
+	selectLabel?: string;
+}
+
+export interface DropdownSelectProps extends DDSelectOptionsProps, ISelectHandler, InputLabelProps {
+	multiple?: boolean;
 	selected?: string;
 	flush?: boolean;
 	upperCase?: boolean;
 	small?: boolean;
-	selectLabel?: string;
 	componentLabel?: string;
 	selectClass?: string;
 }
+
+
 
 export interface InputDropdownProps extends DropdownSelectProps {
 	props?: React.ReactPropTypes;
@@ -79,7 +85,7 @@ export interface QuantitySelectorProps {
 export interface InputTextProps {
 	id?: string;
 	onChange?: (value: string) => void;
-	onBlur?: () => void;
+	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
 	errorMsg?: string;
 	groupClass?: string;
 	required?: boolean;
@@ -91,6 +97,8 @@ export interface InputTextProps {
 	value?: string;
 	disabled?: boolean;
 }
+
+export type InputWrapperLabelProps = InputWrapperProps & InputLabelProps;
 
 export interface InputComponentProps extends InputWrapperProps, InputLabelProps {
 	id?: string;
@@ -107,6 +115,7 @@ export interface InputComponentProps extends InputWrapperProps, InputLabelProps 
 	type?: string;
 	size?: string;
 	maxLength?: number;
+	valueAsNumber?: number;
 	value?: string;
 }
 
@@ -121,6 +130,10 @@ export interface InputNumberTextProps {
 	optional?: boolean;
 	onBlur?: () => void;
 	setMin?: (value: number) => void;
+	setMax?: (value: number) => void;
+	min?: number;
+	max?: number;
+	numericType?: string;
 	label?: string;
 }
 

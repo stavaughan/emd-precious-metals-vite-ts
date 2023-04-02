@@ -147,7 +147,7 @@ $highlight-green2: rgb(221, 249, 245);
 $highlight-yellow: rgb(253, 255, 50);
 $byline-green: rgb(28, 213, 189);
 
-$emd-title-font: "futura-pt", sans-serif;
+$emd-title-font: 'Roboto', sans-serif;
 
 $box-shadow: 0 8px 32px rgb(77 101 117 / 35%);
 $box-shadow-success: 0 0 0 0.15rem rgba(38, 223, 145, 0.5);
@@ -160,15 +160,8 @@ $box-shadow-info: 0 0 0 0.15rem rgba(0, 0, 255, 0.5);
 
 $enable-gradients: true;
 $enable-negative-margins: true;
-//$enable-shadows: true;
-
-// $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
 $font-size-base: 0.95rem;
-
-// @media print {
-// 	$font-size-base: 0.875rem;
-// }
 
 $font-size-sm: $font-size-base * 0.9;
 $font-size-lg: $font-size-base * 1.3;
@@ -367,6 +360,6 @@ $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mon
 
 @import "~bootstrap/scss/bootstrap.scss";
 
-@import "./styles/typekit", "./styles/site", "./styles/gradients", "./styles/tables", "./styles/navigation",
+@import "./styles/site", "./styles/gradients", "./styles/tables", "./styles/navigation",
 	"./styles/forms", "./styles/dropdown", "./styles/lists", "./styles/card", "./styles/badges", "./styles/animation",
 	"./styles/progressBar", "./styles/svgIcons", "./styles/buttons", "./styles/colors";

@@ -18,6 +18,11 @@ const Calculators = () => {
 		<Layout
 			settings={settings}
 			isLoading={isLoading}
+			content={{
+				header: true,
+				footer: true,
+				pageHeader: true
+			}}
 		>
 			<div className="container-lg py-3 ease-in">
 				<MetalsProvider>

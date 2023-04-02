@@ -10,8 +10,6 @@ const CopyRight: React.FC<{
 
 	const copyRight = settings && settings?.copyRight ? settings?.copyRight : null;
 	const encodedURL = copyRight && copyRight?.link ? encodeURI(copyRight?.link) : '';
-
-	//const copyRightText = `Copyright © ${new Date().getFullYear()} ${settings?.copyRight?.label}`
 	const copyRightText = `© ${new Date().getFullYear()} ${settings?.copyRight?.label}. All rights reserved.`;
 
 	return (

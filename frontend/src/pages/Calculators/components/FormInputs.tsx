@@ -47,7 +47,7 @@ const FormInputs: React.FC = () => {
 	}, [setInputValues, qualitiesObject]);
 
 	const onSetWeight = (value: string) => {
-		const weightVal = Global.numbersOnly(value);
+		const weightVal = value ? Global.numbersOnly(value) : 0;
 		if (weightVal) {
 			setInputValues((prev) => ({
 				...prev,
@@ -86,7 +86,9 @@ const FormInputs: React.FC = () => {
 					wrapProps={{ cols: '6 sm-4 md-3' }}
 					textInputProps={{
 						id: "inputmetalweight",
-						label: inputValues?.metal !== undefined ? `${Global.upperCaseFirst(inputValues.metal)} Weight (grams)` : 'Weight (grams)',
+						label: inputValues?.metal !== undefined
+							? `${Global.upperCaseFirst(inputValues.metal)} Weight (grams)`
+							: 'Weight (grams)',
 						value: inputValues?.weightLabel || '',
 						onChange: onSetWeight,
 						required: true,

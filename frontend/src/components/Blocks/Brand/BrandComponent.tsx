@@ -31,9 +31,7 @@ const BrandComponent: React.FC<BrandComponentProps> = ({
 						height="60px"
 						circle
 					/>
-				) : (
-					<BrandLogo color={color} width="55" />
-				)}
+				) : <BrandLogo color={color} width="55" />}
 			</div>
 			<div>
 				<div className={clsx(

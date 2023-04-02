@@ -1,9 +1,9 @@
 import React from 'react'
 import { InputComponent } from '.'
-import type { InputTextProps } from './input-components.types'
+import type { InputComponentProps } from './input-components.types'
 
-const InputText: React.FC<InputTextProps> = ({
-	...props
-}) => <InputComponent {...props} />
+const InputText: React.FC<InputComponentProps> = (props) => (
+	<InputComponent {...props} />
+);
 
 export default InputText
