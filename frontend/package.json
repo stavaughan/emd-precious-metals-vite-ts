@@ -40,7 +40,7 @@
 		"@reduxjs/toolkit": "^1.9.1",
 		"@types/react-redux": "^7.1.25",
 		"@vitejs/plugin-react": "^4.3.4",
-		"axios": "^1.7.4",
+		"axios": "^1.12.0",
 		"bootstrap": "^5.2.3",
 		"clsx": "^1.2.1",
 		"react": "18.2.0",
