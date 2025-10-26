@@ -39,10 +39,10 @@
   },
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.4",
+    "axios": "^1.12.0",
     "body-parser": "^1.20.1",
     "cloudinary": "^1.34.0",
-    "compression": "^1.7.4",
+    "compression": "^1.8.1",
     "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -53,7 +53,7 @@
     "express-rate-limit": "^6.7.0",
     "helmet": "^6.0.1",
     "mongodb": "^5.8.0",
-    "mongoose": "^6.13.5",
+    "mongoose": "^6.13.8",
     "pretty-error": "^4.0.0",
     "ts-loader": "^9.4.2",
     "webpack": "^5.94.0",
@@ -89,6 +89,6 @@
     "prettier": "^2.8.4",
     "supertest": "^6.3.3",
     "typescript": "^4.9.5",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^5.2.1"
   }
 }
