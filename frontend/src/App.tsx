@@ -8,6 +8,7 @@ import {
 } from '@/pages';
 
 import { SettingsContextProvider } from '@/contexts/settings-context';
+import RingPhotoCvPage from "@/features/ringCv/RingPhotoCvPage";
 import { useLoadSettings } from '@/hooks';
 import { faIconList } from '@/theme';
 
@@ -28,6 +29,7 @@ const App = () => {
 				<Route path='/*' element={<NotFound />} />
 				<Route path='/legal/terms-of-use' element={<TermsOfService />} />
 				<Route path='/legal/privacy-policy' element={<PrivacyPolicy />} />
+				<Route path="/ring-cv" element={<RingPhotoCvPage />} />
 			</Routes>
 		</SettingsContextProvider>
 	);
