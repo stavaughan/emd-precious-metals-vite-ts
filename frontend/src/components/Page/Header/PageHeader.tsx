@@ -1,6 +1,7 @@
 import { PageTitle, TitleIcon } from '.';
 import clsx from 'clsx';
 import { useMobile } from '@/hooks';
+import { Link } from 'react-router-dom';
 
 const PageHeader = () => {
 
@@ -19,6 +20,7 @@ const PageHeader = () => {
 					pageGroup="calculators"
 					baseTitle="Precious Metals Scrap Calculator"
 				/>
+				<Link to="/ring-cv" className="btn btn-primary">Ring CV</Link>
 			</div>
 		</div>
 	);
